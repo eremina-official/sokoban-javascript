@@ -1,0 +1,1 @@
+Sokoban - a game written in JavaScript in Object-oriented and Functional styles.
