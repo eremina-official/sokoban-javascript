@@ -7,7 +7,7 @@ body {
 }
 
 /* box-sizing property is not inherited */
-* {
+*, ::before, ::after {
   box-sizing: border-box; 
 }
 
@@ -27,8 +27,24 @@ header a {
   color: #07c;
 }
 
-.main {
+main {
   max-width: 1024px;
   margin: auto;
   padding: 14px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 400px;
+}
+
+.square {
+  width: calc(100% / 8);
+  height: 50px;
+  border: 1px solid black;
+}
+
+.wall {
+  background-color: gray;
 }
