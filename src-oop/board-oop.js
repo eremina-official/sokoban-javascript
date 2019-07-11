@@ -15,16 +15,16 @@ class Board {
   }
 
   renderPerson() {
-  const person = document.querySelector('.js-person');
-  person.textContent = 'p';
+    const person = document.querySelector('.js-person');
+    person.textContent = 'p';
   }
 
-  /* 
-    Receive the keyup event from the main game instance
-    @param {number} personIndex - index of current person position in the levelArray model
-    @param {number} nextPersonIndex - index to which person should be positioned
-    @param {string} type - type of move (make a step or push a box)
-  */
+  /**
+   * Receive the keyup event from the main game instance
+   * @param {number} personIndex - index of current person position in the levelArray model
+   * @param {number} nextPersonIndex - index to which person should be positioned
+   * @param {string} type - type of move (make a step or push a box)
+   */
   receiveCommand(personIndex, nextPersonIndex, type) {
     if (type === 'makeStep') {
       const nextPersonPosition = document.querySelector(`.js-${nextPersonIndex}`);
