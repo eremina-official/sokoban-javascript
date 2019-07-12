@@ -1,3 +1,7 @@
+/**
+ * Renders the view according to a model.
+ * Receives the keyup event from the main game instance and updates the view.
+ */
 class Board {
   constructor(levelArray) {
     this.levelArray = levelArray;
