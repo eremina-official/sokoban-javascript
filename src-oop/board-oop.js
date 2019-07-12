@@ -19,6 +19,12 @@ class Board {
     person.textContent = 'p';
   }
 
+  renderTarget() {
+    const target = document.querySelector('.js-target');
+    const targetSign = document.createElement('div');
+    target.appendChild(targetSign);
+  }
+
   /**
    * Receive the keyup event from the main game instance
    * @param {number} personIndex - index of current person position in the levelArray model
