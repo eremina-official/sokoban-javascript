@@ -37,13 +37,20 @@ class Game {
         break;
     }
 
-    if (this.levelArray[nextPersonIndex] === '') {
-      //pushBox
-    }
-    
+    const nextPersonIndex = personIndex + direction;
+
     if (this.levelArray[nextPersonIndex] === 'space') {
-      this.makeStep(personIndex, nextPersonIndex);
-    } 
+      this.updateLevelArray(personIndex, nextPersonIndex);
+      this.board.receiveCommand('makeStep', personIndex, nextPersonIndex);
+    }
+
+    if (this.levelArray[nextPersonIndex] === 'box') {
+      const nextBoxIndex = nextPersonIndex + direction;
+      if (this.levelArray[nextBoxIndex] === 'space') {
+        this.updateLevelArray(personIndex, nextPersonIndex, nextBoxIndex);
+        this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex)
+      }
+    }
   }
 
   makeStep(personIndex, nextPersonIndex) {
