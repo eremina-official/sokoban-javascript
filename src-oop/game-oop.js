@@ -20,20 +20,20 @@ class Game {
 
   move(event) {
     const personIndex = this.levelArray.findIndex(element => element === 'person');
-    let nextPersonIndex;
+    let direction;
 
     switch (event.keyCode) {
       case 39:
-        nextPersonIndex = personIndex + 1;
+        direction = 1;
         break;
       case 37:
-        nextPersonIndex = personIndex - 1;
+        direction = -1;
         break;
       case 38:
-        nextPersonIndex = personIndex - 8;
+        direction = -8;
         break;
       case 40:
-        nextPersonIndex = personIndex + 8;
+        direction = 8;
         break;
     }
 
