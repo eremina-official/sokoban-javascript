@@ -31,11 +31,21 @@ class Board {
    * @param {number} nextPersonIndex - index to which person should be positioned
    * @param {string} type - type of move (make a step or push a box)
    */
-  receiveCommand(personIndex, nextPersonIndex, type) {
+  receiveCommand(type, personIndex, nextPersonIndex, nextBoxIndex) {
+    const nextPersonPosition = document.querySelector(`.js-${nextPersonIndex}`);
+    document.querySelector(`.js-${personIndex}`).textContent = '';
+    document.querySelector(`.js-${personIndex}`).classList.replace('person', 'space');
+
     if (type === 'makeStep') {
-      const nextPersonPosition = document.querySelector(`.js-${nextPersonIndex}`);
-      document.querySelector(`.js-${personIndex}`).textContent = '';
-      nextPersonPosition.textContent = 'p';
+      nextPersonPosition.textContent = 'O';
+      nextPersonPosition.classList.replace('space', 'person');
+    }
+
+    if (type === 'pushBox') {
+      nextPersonPosition.textContent = 'O';
+      nextPersonPosition.classList.replace('box', 'person');
+      const nextBoxPosition = document.querySelector(`.js-${nextBoxIndex}`);
+      nextBoxPosition.classList.replace('space', 'box');
     }
   }
 
