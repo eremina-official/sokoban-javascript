@@ -4,7 +4,7 @@ import Board from './board-oop.js';
 
 class Game {
   constructor(levelArray) {
-    this.levelArray = levelArray;
+    this.levelArray = [...levelArray];
     this.board = new Board(this.levelArray);
     this.move = this.move.bind(this);
     this.init();
