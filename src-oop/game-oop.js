@@ -46,9 +46,10 @@ class Game {
 
     if (this.levelArray[nextPersonIndex] === 'box') {
       const nextBoxIndex = nextPersonIndex + direction;
-      if (this.levelArray[nextBoxIndex] === 'space') {
+      if (this.levelArray[nextBoxIndex] === 'space' || this.levelArray[nextBoxIndex] === 'target') {
         this.updateLevelArray(personIndex, nextPersonIndex, nextBoxIndex);
-        this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex)
+        this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex);
+        this.checkWin();
       }
     }
   }
@@ -61,13 +62,20 @@ class Game {
     }
   }
 
+  checkWin() {
+    const targets = Array.from(document.querySelectorAll('.js-target'));
+    if (targets.every(target => target.classList.contains('box'))) {
+      this.unbindEvents();
+      const winnerScreen = document.querySelector('.js-winner-screen');
+      winnerScreen.classList.add('is-visible');
+    }
+  }
+
   init() {
     this.bindEvents();
   }
 }
 
-const levelOne = new Game(levels[0]);
-console.log(levelOne);
 
 //select level from a list
 //after selecting level create a new Game instance
