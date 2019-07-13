@@ -19,7 +19,5 @@ function playNextGame(event) {
     board.textContent = '';
     winnerScreen.classList.remove('is-visible');
     newGame = new Game(levels[currentIndex]);
-    console.log(newGame);
-    console.log(currentIndex)
   }
 }
