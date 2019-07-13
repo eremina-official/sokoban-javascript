@@ -24,9 +24,12 @@ class Board {
   }
 
   renderTarget() {
-    const target = document.querySelector('.js-target');
-    const targetSign = document.createElement('div');
-    target.appendChild(targetSign);
+    const targets = document.querySelectorAll('.js-target');
+    targets.forEach(target => {
+      const targetSign = document.createElement('div');
+      targetSign.setAttribute('class', 'styled-target');
+      target.appendChild(targetSign);
+    });
   }
 
   /**
