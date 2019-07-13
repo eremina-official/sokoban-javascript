@@ -53,12 +53,12 @@ class Game {
     }
   }
 
-  makeStep(personIndex, nextPersonIndex) {
+  updateLevelArray(personIndex, nextPersonIndex, nextBoxIndex) {
     this.levelArray.splice(personIndex, 1, 'space');
     this.levelArray.splice(nextPersonIndex, 1, 'person');
-    const nextPersonPosition = document.querySelector(`.js-${nextPersonIndex}`);
-    document.querySelector(`.js-${personIndex}`).textContent = '';
-    nextPersonPosition.textContent = 'p';
+    if (nextBoxIndex) {
+      this.levelArray.splice(nextBoxIndex, 1, 'box');
+    }
   }
 
   init() {
