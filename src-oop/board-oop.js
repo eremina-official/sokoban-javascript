@@ -13,14 +13,9 @@ class Board {
 
     this.levelArray.forEach((item, itemIndex) => {
       const square = document.createElement('div');
-      square.setAttribute('class', `square js-square ${item} js-${item} js-${itemIndex}`);
+      square.setAttribute('class', `square ${item} js-${item} js-${itemIndex}`);
       board.appendChild(square);
     });
-  }
-
-  renderPerson() {
-    const person = document.querySelector('.js-person');
-    person.textContent = 'p';
   }
 
   renderTarget() {
@@ -34,31 +29,30 @@ class Board {
 
   /**
    * Receive the keyup event from the main game instance
+   * @param {string} type - type of move (make a step or push a box)
    * @param {number} personIndex - index of current person position in the levelArray model
    * @param {number} nextPersonIndex - index to which person should be positioned
-   * @param {string} type - type of move (make a step or push a box)
+   * @param {number} nextBoxIndex - index to which box should be positioned
    */
   receiveCommand(type, personIndex, nextPersonIndex, nextBoxIndex) {
     const nextPersonPosition = document.querySelector(`.js-${nextPersonIndex}`);
-    document.querySelector(`.js-${personIndex}`).textContent = '';
     document.querySelector(`.js-${personIndex}`).classList.replace('person', 'space');
 
     if (type === 'makeStep') {
-      nextPersonPosition.textContent = 'O';
       nextPersonPosition.classList.replace('space', 'person');
     }
 
     if (type === 'pushBox') {
-      nextPersonPosition.textContent = 'O';
       nextPersonPosition.classList.replace('box', 'person');
       const nextBoxPosition = document.querySelector(`.js-${nextBoxIndex}`);
       nextBoxPosition.classList.replace('space', 'box');
+      nextBoxPosition.classList.replace('target', 'box');
     }
   }
 
   init() {
     this.renderBoard();
-    this.renderPerson();
+    this.renderTarget();
   }
 }
 
