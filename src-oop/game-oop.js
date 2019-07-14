@@ -6,16 +6,16 @@ class Game {
   constructor(currentLevel) {
     this.levelArray = [...currentLevel];
     this.board = new Board(this.levelArray);
-    this.move = this.move.bind(this);
+    this.calculateDirection = this.calculateDirection.bind(this);
     this.init();
   }
 
   bindEvents() {
-    document.addEventListener('keyup', this.move);
+    document.addEventListener('keyup', this.calculateDirection);
   }
 
   unbindEvents() {
-    document.removeEventListener('keyup', this.move);
+    document.removeEventListener('keyup', this.calculateDirection);
   }
 
   calculateDirection(event) {
