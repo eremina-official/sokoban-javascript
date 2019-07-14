@@ -3,8 +3,8 @@ import Board from './board-oop.js';
 
 
 class Game {
-  constructor(levelArray) {
-    this.levelArray = [...levelArray];
+  constructor(currentLevel) {
+    this.levelArray = [...currentLevel];
     this.board = new Board(this.levelArray);
     this.move = this.move.bind(this);
     this.init();
@@ -18,8 +18,7 @@ class Game {
     document.removeEventListener('keyup', this.move);
   }
 
-  move(event) {
-    const personIndex = this.levelArray.findIndex(element => element === 'person');
+  calculateDirection(event) {
     let direction;
 
     switch (event.keyCode) {
@@ -37,16 +36,27 @@ class Game {
         break;
     }
 
+    this.move(direction)
+  }
+  
+  move(direction) {
+    const personIndex = this.levelArray.findIndex(element => element === 'person');
     const nextPersonIndex = personIndex + direction;
 
-    if (this.levelArray[nextPersonIndex] === 'space') {
+    if (
+      this.levelArray[nextPersonIndex] === 'space' 
+      || this.levelArray[nextPersonIndex] === 'target'
+    ) {
       this.updateLevelArray(personIndex, nextPersonIndex);
       this.board.receiveCommand('makeStep', personIndex, nextPersonIndex);
     }
 
     if (this.levelArray[nextPersonIndex] === 'box') {
       const nextBoxIndex = nextPersonIndex + direction;
-      if (this.levelArray[nextBoxIndex] === 'space' || this.levelArray[nextBoxIndex] === 'target') {
+      if (
+        this.levelArray[nextBoxIndex] === 'space' 
+        || this.levelArray[nextBoxIndex] === 'target'
+      ) {
         this.updateLevelArray(personIndex, nextPersonIndex, nextBoxIndex);
         this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex);
         this.checkWin();
@@ -68,6 +78,7 @@ class Game {
       this.unbindEvents();
       const winnerScreen = document.querySelector('.js-winner-screen');
       winnerScreen.classList.add('is-visible');
+      document.querySelector('.js-winner-screen__button').focus();
     }
   }
 
