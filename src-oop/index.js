@@ -8,8 +8,33 @@ const board = document.querySelector('.js-board');
 const winnerScreen = document.querySelector('.js-winner-screen');
 let newGame = new Game(levels[currentIndex]);
 
+document.addEventListener('click', moveWithNavButtons);
 document.addEventListener('click', playNextGame);
 document.addEventListener('keyup', playNextGameEnter);
+
+
+function moveWithNavButtons(event) {
+  if (!event.target.classList.contains('js-nav-button')) {
+    return;
+  }
+
+  let direction;
+
+  if (event.target.classList.contains('js-nav-button-left')) {
+    direction = -1;
+  }
+  if (event.target.classList.contains('js-nav-button-up')) {
+    direction = -8;
+  }
+  if (event.target.classList.contains('js-nav-button-right')) {
+    direction = 1;
+  }
+  if (event.target.classList.contains('js-nav-button-down')) {
+    direction = 8;
+  }
+  
+  newGame.move(direction);
+}
 
 function playNextGame(event) {
   if (
@@ -24,7 +49,7 @@ function playNextGame(event) {
 }
 
 /* 
-  Automatically focuse the Next Game button when Winner screen appears
+  Open next game on enter keypress when the Next Game button is focused
 */
 function playNextGameEnter(event) {
   if (
