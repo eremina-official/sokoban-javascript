@@ -56,6 +56,37 @@ main {
   z-index: 99;
 }
 
+.levels-menu {
+  display: inline-block;
+  margin: 0 0 20px 0;
+  padding: 2px 5px;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.levels-menu:hover {
+  color: white;
+  background-color: gray;
+  border: 1px solid gray;
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 280px;
+  margin: 0 auto 10px;
+}
+
+.info__item {
+  flex-basis: 45%;
+  margin: 0 0 10px 0;
+}
+
+.reset, .undo {
+  cursor: pointer;
+}
+
 .board {
   display: flex;
   flex-wrap: wrap;
@@ -102,12 +133,12 @@ main {
   margin: auto;
   display: flex;
   flex-wrap: wrap;
-  cursor: pointer;
 }
 
 .nav-button {
   margin: 5px auto 5px;
   font-size: 20px;
+  cursor: pointer;
 }
 
 .nav-button--up, .nav-button--down {
