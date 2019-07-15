@@ -1,8 +1,16 @@
 /**
  * Renders the view according to a model.
  * Receives the keyup event from the main game instance and updates the view.
+ * 
+ * @property {object} levelArray = array representation of the current level
  */
 class Board {
+
+  /**
+   * Create a board instance.
+   * 
+   * @param {object} levelArray - array representation of the current level 
+   */
   constructor(levelArray) {
     this.levelArray = levelArray;
     this.init();
@@ -29,6 +37,7 @@ class Board {
 
   /**
    * Receive the keyup event from the main game instance
+   * 
    * @param {string} type - type of move (make a step or push a box)
    * @param {number} personIndex - index of current person position in the levelArray model
    * @param {number} nextPersonIndex - index to which person should be positioned
@@ -40,6 +49,7 @@ class Board {
 
     if (type === 'makeStep') {
       nextPersonPosition.classList.replace('space', 'person');
+      nextPersonPosition.classList.replace('target', 'person');
     }
 
     if (type === 'pushBox') {

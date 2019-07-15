@@ -3,6 +3,12 @@
  * Receives commands from a game instance and updates info screen.
  */
 class Info {
+
+  /**
+   * Create info instance.
+   * 
+   * @param {number} levelNumber - number of the current level 
+   */
   constructor(levelNumber) {
     this.level = levelNumber;
     this.stepElement = document.querySelector('.js-step');

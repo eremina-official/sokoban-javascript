@@ -5,8 +5,21 @@ import Info from './info-oop.js';
 /**
  * Creates a game instance with a current level.
  * Handles game logic.
+ * 
+ * @property {object} levelArray - array representing current level
+ * @property {Board} board - a board instance
+ * @property {Info} info - a info instance
+ * @property {number} stepNumber - number of steps made in a current game
+ * 
  */
 class Game {
+
+  /**
+   * Create the game instance.
+   * 
+   * @param {object} currentLevel - array representation of the current level 
+   * @param {number} levelNumber - number of the current level
+   */
   constructor(currentLevel, levelNumber) {
     this.levelArray = [...currentLevel];
     this.board = new Board(this.levelArray);
@@ -24,6 +37,11 @@ class Game {
     document.removeEventListener('keyup', this.calculateDirection);
   }
 
+  /**
+   * Find out which position in the current level array model should be updated.
+   * 
+   * @param {Event} event - current DOM event instance
+   */
   calculateDirection(event) {
     let direction;
 
@@ -45,6 +63,11 @@ class Game {
     this.move(direction)
   }
   
+  /**
+   * Handles person's moving logic.
+   * 
+   * @param {number} direction - a value to calculate the person's next position
+   */
   move(direction) {
     const personIndex = this.levelArray.findIndex(element => element === 'person');
     const nextPersonIndex = personIndex + direction;
@@ -80,6 +103,9 @@ class Game {
     }
   }
 
+  /**
+   * Calculate the number of steps made and send command to Info instance to update the screen.
+   */
   calculateStep() {
     this.stepNumber += 1;
     this.info.updateStep(this.stepNumber);
