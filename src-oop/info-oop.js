@@ -7,14 +7,19 @@ class Info {
     this.level = levelNumber;
     this.stepElement = document.querySelector('.js-step');
     this.setLevelNumber();
+    this.resetStepNumber();
   }
 
   setLevelNumber() {
     document.querySelector('.js-level').textContent = `Level: ${this.level}`;
   }
 
+  resetStepNumber() {
+    this.stepElement.textContent = `Step: 0`;
+  }
+
   updateStep(stepNumber) {
-    this.stepElement.textContent = stepNumber;
+    this.stepElement.textContent = `Step: ${stepNumber}`;
   }
 }
 

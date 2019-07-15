@@ -1,13 +1,17 @@
-import levels from '../levels.js';
 import Board from './board-oop.js';
 import Info from './info-oop.js';
 
 
+/**
+ * Creates a game instance with a current level.
+ * Handles game logic.
+ */
 class Game {
   constructor(currentLevel, levelNumber) {
     this.levelArray = [...currentLevel];
     this.board = new Board(this.levelArray);
     this.info = new Info(levelNumber);
+    this.stepNumber = 0;
     this.calculateDirection = this.calculateDirection.bind(this);
     this.init();
   }
@@ -51,6 +55,7 @@ class Game {
     ) {
       this.updateLevelArray(personIndex, nextPersonIndex);
       this.board.receiveCommand('makeStep', personIndex, nextPersonIndex);
+      this.calculateStep();
     }
 
     if (this.levelArray[nextPersonIndex] === 'box') {
@@ -61,6 +66,7 @@ class Game {
       ) {
         this.updateLevelArray(personIndex, nextPersonIndex, nextBoxIndex);
         this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex);
+        this.calculateStep();
         this.checkWin();
       }
     }
@@ -72,6 +78,11 @@ class Game {
     if (nextBoxIndex) {
       this.levelArray.splice(nextBoxIndex, 1, 'box');
     }
+  }
+
+  calculateStep() {
+    this.stepNumber += 1;
+    this.info.updateStep(this.stepNumber);
   }
 
   checkWin() {
@@ -89,10 +100,5 @@ class Game {
   }
 }
 
-
-//select level from a list
-//after selecting level create a new Game instance
-//Game keeps state of levelArray (model), has eventListeners for moves with buttons and keyboard, passes commands to Board to update the view, keeps state and shows the number of moves, optionally timer, restart game (update the model and send command to Board to update the view)
-//Game creates a new Board instance, Boards has a logic for updating the view
 
 export default Game;
