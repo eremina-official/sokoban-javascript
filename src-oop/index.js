@@ -6,7 +6,7 @@ import Game from './game-oop.js';
 let currentIndex = 0;
 const board = document.querySelector('.js-board');
 const winnerScreen = document.querySelector('.js-winner-screen');
-let newGame = new Game(levels[currentIndex]);
+let newGame = new Game(levels[currentIndex], currentIndex + 1);
 
 document.addEventListener('click', moveWithNavButtons);
 document.addEventListener('click', playNextGame);
@@ -44,7 +44,7 @@ function playNextGame(event) {
     currentIndex += 1;
     board.textContent = '';
     winnerScreen.classList.remove('is-visible');
-    newGame = new Game(levels[currentIndex]);
+    newGame = new Game(levels[currentIndex], currentIndex + 1);
   }
 }
 

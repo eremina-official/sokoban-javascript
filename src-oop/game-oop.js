@@ -1,11 +1,13 @@
 import levels from '../levels.js';
 import Board from './board-oop.js';
+import Info from './info-oop.js';
 
 
 class Game {
-  constructor(currentLevel) {
+  constructor(currentLevel, levelNumber) {
     this.levelArray = [...currentLevel];
     this.board = new Board(this.levelArray);
+    this.info = new Info(levelNumber);
     this.calculateDirection = this.calculateDirection.bind(this);
     this.init();
   }
