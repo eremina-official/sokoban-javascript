@@ -17,12 +17,12 @@ class Game {
   /**
    * Create the game instance.
    * 
-   * @param {object} currentLevel - array representation of the current level 
+   * @param {object} history - record of all game states
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
-    this.levelArray = [...currentLevel];
-    this.board = new Board(this.levelArray);
+    this.history = [currentLevel];
+    this.board = new Board(this.history[0]);
     this.info = new Info(levelNumber);
     this.stepNumber = 0;
     this.calculateDirection = this.calculateDirection.bind(this);
@@ -69,25 +69,25 @@ class Game {
    * @param {number} direction - a value to calculate the person's next position
    */
   move(direction) {
-    const personIndex = this.levelArray.findIndex(element => element === 'person');
+    const levelArray = [...this.history[this.history.length - 1]];
+    const personIndex = levelArray.findIndex(element => element === 'person');
     const nextPersonIndex = personIndex + direction;
-
     if (
-      this.levelArray[nextPersonIndex] === 'space' 
-      || this.levelArray[nextPersonIndex] === 'target'
+      levelArray[nextPersonIndex] === 'space' 
+      || levelArray[nextPersonIndex] === 'target'
     ) {
-      this.updateLevelArray(personIndex, nextPersonIndex);
+      this.updateLevelArray(levelArray, personIndex, nextPersonIndex);
       this.board.receiveCommand('makeStep', personIndex, nextPersonIndex);
       this.calculateStep();
     }
 
-    if (this.levelArray[nextPersonIndex] === 'box') {
+    if (levelArray[nextPersonIndex] === 'box') {
       const nextBoxIndex = nextPersonIndex + direction;
       if (
-        this.levelArray[nextBoxIndex] === 'space' 
-        || this.levelArray[nextBoxIndex] === 'target'
+        levelArray[nextBoxIndex] === 'space' 
+        || levelArray[nextBoxIndex] === 'target'
       ) {
-        this.updateLevelArray(personIndex, nextPersonIndex, nextBoxIndex);
+        this.updateLevelArray(levelArray, personIndex, nextPersonIndex, nextBoxIndex);
         this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex);
         this.calculateStep();
         this.checkWin();
@@ -95,12 +95,13 @@ class Game {
     }
   }
 
-  updateLevelArray(personIndex, nextPersonIndex, nextBoxIndex) {
-    this.levelArray.splice(personIndex, 1, 'space');
-    this.levelArray.splice(nextPersonIndex, 1, 'person');
+  updateLevelArray(levelArray, personIndex, nextPersonIndex, nextBoxIndex) {
+    levelArray.splice(personIndex, 1, 'space');
+    levelArray.splice(nextPersonIndex, 1, 'person');
     if (nextBoxIndex) {
-      this.levelArray.splice(nextBoxIndex, 1, 'box');
+      levelArray.splice(nextBoxIndex, 1, 'box');
     }
+    this.history.push(levelArray);
   }
 
   /**
