@@ -5,12 +5,14 @@ import Game from './game-oop.js';
 
 let currentIndex = 0;
 const board = document.querySelector('.js-board');
+const resetButton = document.querySelector('.js-reset');
 const winnerScreen = document.querySelector('.js-winner-screen');
 let newGame = new Game(levels[currentIndex], currentIndex + 1);
 
 document.addEventListener('click', moveWithNavButtons);
 document.addEventListener('click', playNextGame);
 document.addEventListener('keyup', playNextGameEnter);
+document.addEventListener('click', reset);
 
 
 function moveWithNavButtons(event) {
@@ -58,5 +60,13 @@ function playNextGameEnter(event) {
     && event.which === 13
   ) {
     playNextGame(event);
+  }
+}
+
+function reset(event) {
+  if (event.target === resetButton) {
+    newGame.unbindEvents();
+    board.textContent = '';
+    newGame = new Game(levels[currentIndex], currentIndex + 1);
   }
 }
