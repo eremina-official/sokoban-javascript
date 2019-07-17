@@ -2,7 +2,9 @@
  * Renders the view according to a model.
  * Receives the keyup event from the main game instance and updates the view.
  * 
- * @property {object} levelArray = array representation of the current level
+ * @property {object} levelArray - array representation of the current level
+ * @property {object} targets - array list of targets
+ * @property {object} board - board DOM element
  */
 class Board {
 
@@ -22,6 +24,7 @@ class Board {
   renderBoard() {
     this.levelArray.forEach((item, itemIndex) => {
       const square = document.createElement('div');
+      /* .js-itemIndex class is used in game.checkWin(), this.receiveCommand methods */
       square.setAttribute('class', `square ${item} js-${item} js-${itemIndex}`);
       this.board.appendChild(square);
     });
