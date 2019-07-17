@@ -6,10 +6,12 @@ import Info from './info-oop.js';
  * Creates a game instance with a current level.
  * Handles game logic.
  * 
- * @property {object} levelArray - array representing current level
+ * @property {object} history - record of all game states
+ * @property {object} targets - an array with indices of targets
  * @property {Board} board - a board instance
  * @property {Info} info - a info instance
  * @property {number} stepNumber - number of steps made in a current game
+ * @property {object} undoButton - undo button DOM element
  * 
  */
 class Game {
@@ -17,24 +19,29 @@ class Game {
   /**
    * Create the game instance.
    * 
-   * @param {object} history - record of all game states
+   * @param {object} currentLevel - array representation of the current level and target indices
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
-    this.history = [currentLevel];
-    this.board = new Board(this.history[0]);
+    this.history = [currentLevel[0]];
+    this.targets = currentLevel[1];
+    this.board = new Board(this.history[0], this.targets);
     this.info = new Info(levelNumber);
     this.stepNumber = 0;
+    this.undoButton = document.querySelector('.js-undo');
     this.calculateDirection = this.calculateDirection.bind(this);
+    this.undo = this.undo.bind(this);
     this.init();
   }
 
   bindEvents() {
     document.addEventListener('keyup', this.calculateDirection);
+    document.addEventListener('click', this.undo);
   }
 
   unbindEvents() {
     document.removeEventListener('keyup', this.calculateDirection);
+    document.removeEventListener('click', this.undo);
   }
 
   /**
@@ -110,6 +117,18 @@ class Game {
   calculateStep() {
     this.stepNumber += 1;
     this.info.updateStep(this.stepNumber);
+  }
+
+  undo(event) {
+    if (
+      event.target === document.querySelector('.js-undo')
+      && this.history.length > 1
+    ) {
+      this.history.pop();
+      this.board.clearBoard();
+      this.board = new Board(this.history[this.history.length - 1], this.targets);
+      this.calculateStep();
+    }
   }
 
   checkWin() {

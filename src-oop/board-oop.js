@@ -9,29 +9,32 @@ class Board {
   /**
    * Create a board instance.
    * 
-   * @param {object} levelArray - array representation of the current level 
+   * @param {object} levelArray - array representation of the current level
+   * @param {object} targets - array with indices of targets
    */
-  constructor(levelArray) {
+  constructor(levelArray, targets) {
     this.levelArray = levelArray;
+    this.targets = targets;
+    this.board = document.querySelector('.js-board');
     this.init();
   }
 
   renderBoard() {
-    const board = document.querySelector('.js-board');
-
     this.levelArray.forEach((item, itemIndex) => {
       const square = document.createElement('div');
       square.setAttribute('class', `square ${item} js-${item} js-${itemIndex}`);
-      board.appendChild(square);
+      this.board.appendChild(square);
     });
   }
 
   renderTarget() {
-    const targets = document.querySelectorAll('.js-target');
-    targets.forEach(target => {
+    this.targets.forEach(target => {
+      const targetSquare = document.querySelector(`.js-${target}`);
+      /* js-target class is required for the game.checkWin method to work */
+      targetSquare.classList.add('js-target');
       const targetSign = document.createElement('div');
       targetSign.setAttribute('class', 'styled-target');
-      target.appendChild(targetSign);
+      targetSquare.appendChild(targetSign);
     });
   }
 
@@ -58,6 +61,10 @@ class Board {
       nextBoxPosition.classList.replace('space', 'box');
       nextBoxPosition.classList.replace('target', 'box');
     }
+  }
+
+  clearBoard() {
+    this.board.textContent = '';
   }
 
   init() {
