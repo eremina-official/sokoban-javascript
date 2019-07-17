@@ -79,10 +79,8 @@ class Game {
     const levelArray = [...this.history[this.history.length - 1]];
     const personIndex = levelArray.findIndex(element => element === 'person');
     const nextPersonIndex = personIndex + direction;
-    if (
-      levelArray[nextPersonIndex] === 'space' 
-      || levelArray[nextPersonIndex] === 'target'
-    ) {
+
+    if (levelArray[nextPersonIndex] === 'space') {
       this.updateLevelArray(levelArray, personIndex, nextPersonIndex);
       this.board.receiveCommand('makeStep', personIndex, nextPersonIndex);
       this.calculateStep();
@@ -90,10 +88,7 @@ class Game {
 
     if (levelArray[nextPersonIndex] === 'box') {
       const nextBoxIndex = nextPersonIndex + direction;
-      if (
-        levelArray[nextBoxIndex] === 'space' 
-        || levelArray[nextBoxIndex] === 'target'
-      ) {
+      if (levelArray[nextBoxIndex] === 'space') {
         this.updateLevelArray(levelArray, personIndex, nextPersonIndex, nextBoxIndex);
         this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex);
         this.calculateStep();
