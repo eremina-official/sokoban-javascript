@@ -1,6 +1,9 @@
 /**
  * Renders the view according to a model.
  * Receives commands from a game instance and updates info screen.
+ * 
+ * @property {number} level - number of the current level
+ * @property {object} stepElement - step DOM element
  */
 class Info {
 
