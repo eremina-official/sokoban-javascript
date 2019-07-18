@@ -55,14 +55,12 @@ class Board {
 
     if (type === 'makeStep') {
       nextPersonPosition.classList.replace('space', 'person');
-      nextPersonPosition.classList.replace('target', 'person');
     }
 
     if (type === 'pushBox') {
       nextPersonPosition.classList.replace('box', 'person');
       const nextBoxPosition = document.querySelector(`.js-${nextBoxIndex}`);
       nextBoxPosition.classList.replace('space', 'box');
-      nextBoxPosition.classList.replace('target', 'box');
     }
   }
 
