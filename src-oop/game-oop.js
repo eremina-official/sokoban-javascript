@@ -12,7 +12,6 @@ import Info from './info-oop.js';
  * @property {Info} info - a info instance
  * @property {number} stepNumber - number of steps made in a current game
  * @property {object} undoButton - undo button DOM element
- * 
  */
 class Game {
 
@@ -23,8 +22,8 @@ class Game {
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
-    this.history = [currentLevel[0]];
-    this.targets = currentLevel[1];
+    this.history = [ currentLevel.map(element => element = (element === 'target') ? 'space' : element) ];
+    this.targets = currentLevel.reduce(this.getTargets, []);
     this.board = new Board(this.history[0], this.targets);
     this.info = new Info(levelNumber);
     this.stepNumber = 0;
@@ -42,6 +41,13 @@ class Game {
   unbindEvents() {
     document.removeEventListener('keyup', this.calculateDirection);
     document.removeEventListener('click', this.undo);
+  }
+
+  getTargets(acc, currentValue, currentValueIndex) {
+    if (currentValue === 'target') {
+      acc = [...acc, currentValueIndex];
+    }
+    return acc;
   }
 
   /**
@@ -116,7 +122,7 @@ class Game {
 
   undo(event) {
     if (
-      event.target === document.querySelector('.js-undo')
+      event.target === this.undoButton
       && this.history.length > 1
     ) {
       this.history.pop();
