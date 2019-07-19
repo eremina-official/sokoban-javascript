@@ -12,23 +12,29 @@
 
 <body>
   <header>
-    <a href="#">Sokoban</a> 
+    <a href="#" class="header__title">Sokoban</a> 
     <span>View code on <a href="https://github.com/eremina-official/sokoban-javascript">Github</a></span>
   </header>
   <main>
     <div class="game-container js-game-container">
+
+      <div class="levels-menu js-levels-menu">
+        <div><span class="levels-menu__button js-levels-menu-button js-levels-menu">Levels</span></div>
+        <div class="levels-menu__list js-levels-menu-list js-levels-menu">
+          <div class="levels-menu__list__choose-level js-levels-menu">Choose Level</div>
+        </div>
+      </div>
+
       <div class="winner-screen js-winner-screen">
         <p>Congratulations!</p>
         <p>You won!</p>
         <button class="winner-screen__button js-winner-screen__button">Next level</button>
       </div>
 
-      <div><span class="levels-menu js-levels-menu">Levels</span></div>
-
       <div class="board-container">
         <div class="info">
           <div class="info__item level js-level"></div>
-          <div class="info__item step js-step">Step: 0</div>
+          <div class="info__item step js-step"></div>
           <button class="info__item reset js-reset">Reset</button>
           <button class="info__item undo js-undo">Undo</button>
         </div>
