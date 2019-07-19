@@ -1,9 +1,19 @@
 /**
- * Creates a levels menu list instance.
+ * Creates a levels menu list instance, handles menu toggling, 
+ * sends a command to the sokoban instance when a new level should be opened.
+ * 
+ * @property {object} levels - levels array
+ * @property {Sokoban} sokobanInstance - current sokoban instance
+ * @property {object} levelsMenuButtonElement - DOM element
+ * @property {object} levelsListElement - DOM element
  */
-
-
 class levelsMenu {
+  /**
+   * Create a levels menu list instance.
+   * 
+   * @param {object} levels - levels array
+   * @param {Sokoban} sokobanInstance - current sokoban instance
+   */
   constructor(levels, sokobanInstance) {
     this.levels = levels;
     this.sokobanInstance = sokobanInstance;
