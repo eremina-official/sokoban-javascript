@@ -1,6 +1,6 @@
-import './game-oop.js';
 import levels from '../levels.js';
 import Game from './game-oop.js';
+import levelsMenu from './levels-menu-oop.js';
 
 
 /**
@@ -22,6 +22,7 @@ class Sokoban {
     this.winnerScreen = document.querySelector('.js-winner-screen');
     this.winnerScreenButton = document.querySelector('.js-winner-screen__button');
     this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
+    this.levelsMenu = new levelsMenu(levels, this);
     this.moveWithNavButtons = this.moveWithNavButtons.bind(this);
     this.playNextGame = this.playNextGame.bind(this);
     this.playNextGameEnter = this.playNextGameEnter.bind(this);
@@ -87,9 +88,20 @@ class Sokoban {
   reset(event) {
     if (event.target === this.resetButton) {
       this.newGame.unbindEvents();
-      this.board.textContent = '';
+      this.newGame.board.clearBoard();
       this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
     }
+  }
+
+  goToLevel(levelNumber) {
+    this.currentIndex = levelNumber;
+    this.newGame.unbindEvents();
+    this.newGame.board.clearBoard();
+    if (this.winnerScreen.classList.contains('is-visible')) {
+      this.winnerScreen.classList.remove('is-visible');
+    }
+    this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
+    this.levelsMenu.closeLevelsListOnSelection();
   }
 }
 
