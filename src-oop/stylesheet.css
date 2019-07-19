@@ -1,9 +1,11 @@
 /* Sokoban-JavaScript Game */
 
 body {
+  min-height: 100vh;
   margin: 0;
   padding: 0;
   font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 /* box-sizing property is not inherited */
@@ -15,16 +17,16 @@ header {
   max-width: 1024px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: auto;
   padding: 14px;
-  border-bottom: 1px solid gray;
-  background-color: #fafafb;
+  color: white;
 }
 
 header a {
   text-decoration: none;
   font-weight: bold;
-  color: #07c;
+  color: rgb(107, 218, 251);
 }
 
 main {
@@ -59,15 +61,15 @@ main {
 .levels-menu {
   display: inline-block;
   margin: 0 0 20px 0;
-  padding: 2px 5px;
-  border: 1px solid black;
+  padding: 4px 8px;
+  border: 1px solid white;
+  color: white;
   cursor: pointer;
 }
 
 .levels-menu:hover {
-  color: white;
-  background-color: gray;
-  border: 1px solid gray;
+  color: rgb(107, 218, 251);
+  border: 1px solid rgb(107, 218, 251);
 }
 
 .info {
@@ -76,6 +78,7 @@ main {
   justify-content: space-between;
   width: 280px;
   margin: 0 auto 10px;
+  color: white;
 }
 
 .info__item {
@@ -92,22 +95,24 @@ main {
   flex-wrap: wrap;
   width: 280px;
   margin: 0 auto 20px;
+  background-color: #fcf5e8;
 }
 
 .square {
   width: calc(100% / 8);
   height: 35px;
-  margin:-1px 0 0 -1px;
-  border: 1px solid gray;
+/*   margin:-1px 0 0 -1px;
+  border: 1px solid gray; */
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #fcf5e8;
+  ;
 }
 
 .wall {
   background-color: gray;
-  background-image: url('../assets/brick.jpg');
+  background-image: url('../assets/brick-crop.jpg');
   background-size: contain;
   border: none;
 }
@@ -118,6 +123,7 @@ main {
 }
 
 .box {
+  border-radius: 14%;
   background-color: #6b5942;
 }
 
@@ -147,4 +153,10 @@ main {
 
 .nav-button--left, .nav-button--right {
   flex-basis: 45%;
+}
+
+@media (min-width: 900px) {
+  .header__title {
+    font-size: 200%;
+  }
 }
