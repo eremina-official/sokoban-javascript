@@ -1,4 +1,4 @@
-###Sokoban
+### Sokoban
 
 **Demo:** https://eremina-official.github.io/sokoban-javascript/
 
