@@ -18,7 +18,7 @@ class Game {
   /**
    * Create the game instance.
    * 
-   * @param {object} currentLevel - array representation of the current level and target indices
+   * @param {object} currentLevel - array representation of the current level
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
@@ -51,7 +51,7 @@ class Game {
   }
 
   /**
-   * Find out which position in the current level array model should be updated.
+   * Find out which position in the current level model should be updated.
    * 
    * @param {Event} event - current DOM event instance
    */
@@ -103,6 +103,14 @@ class Game {
     }
   }
 
+  /**
+   * Updates level model according to the indices calcualted in calculateDirection and move methods.
+   * 
+   * @param {object} levelArray - array representaion of the current level
+   * @param {number} personIndex - current index of the person
+   * @param {number} nextPersonIndex - next index of the person
+   * @param {number} nextBoxIndex - next index of the box
+   */
   updateLevelArray(levelArray, personIndex, nextPersonIndex, nextBoxIndex) {
     levelArray.splice(personIndex, 1, 'space');
     levelArray.splice(nextPersonIndex, 1, 'person');
@@ -120,6 +128,11 @@ class Game {
     this.info.updateStep(this.stepNumber);
   }
 
+  /**
+   * Undo the pervious person's move.
+   *  
+   * @param {event} event - DOM event instance
+   */
   undo(event) {
     if (
       event.target === this.undoButton

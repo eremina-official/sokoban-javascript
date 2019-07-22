@@ -83,7 +83,7 @@ class Sokoban {
   }
   
  /**
-  * Open next game on enter keypress when the Next Game button of the winner screen is in focuse.
+  * Open next game on enter keypress when the Next Game button of the winner screen is in focus.
   * 
   * @param {event} event - DOM event instance
   */
