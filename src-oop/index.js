@@ -37,6 +37,11 @@ class Sokoban {
     document.addEventListener('click', this.reset);
   }
 
+  /**
+   * Calculate direction of person's moves when the navigation buttons are pressed.
+   * 
+   * @param {event} event - DOM event instance
+   */
   moveWithNavButtons(event) {
     if (!event.target.classList.contains('js-nav-button')) {
       return;
@@ -60,6 +65,11 @@ class Sokoban {
     this.newGame.move(direction);
   }
   
+  /**
+   * Clear the current game and open a new one. 
+   *
+   * @param {event} event - DOM event instance
+   */
   playNextGame(event) {
     if (
       event.target === this.winnerScreenButton
@@ -72,8 +82,10 @@ class Sokoban {
     }
   }
   
-  /* 
-    Open next game on enter keypress when the Next Game button is focused
+ /**
+  * Open next game on enter keypress when the Next Game button of the winner screen is in focuse.
+  * 
+  * @param {event} event - DOM event instance
   */
   playNextGameEnter(event) {
     if (
@@ -85,6 +97,11 @@ class Sokoban {
     }
   }
   
+  /**
+   * Reset the current game.
+   * 
+   * @param {event} event - DOM event instance
+   */
   reset(event) {
     if (event.target === this.resetButton) {
       this.newGame.unbindEvents();
@@ -93,6 +110,12 @@ class Sokoban {
     }
   }
 
+  /**
+   * Receives a number of a level that should be opened from a levelsMenu instance, 
+   * clears the current game instance and opens a new game.
+   * 
+   * @param {number} levelNumber - number of the level that should be opened.
+   */
   goToLevel(levelNumber) {
     this.currentIndex = levelNumber;
     this.newGame.unbindEvents();
