@@ -1,6 +1,6 @@
 /**
  * Creates a levels menu list instance, handles menu toggling, 
- * sends a command to the sokoban instance when a new level should be opened.
+ * sends a command to the sokoban instance when a new level is selected from a list.
  * 
  * @property {object} levels - levels array
  * @property {Sokoban} sokobanInstance - current sokoban instance
@@ -32,7 +32,8 @@ class levelsMenu {
   }
 
   /**
-   * Toggle levels menu with Levels button 
+   * Toggle levels menu with Levels button.
+   * 
    * @param {event} event - DOM event instance
    */
   showLevelsList(event) {
@@ -42,7 +43,8 @@ class levelsMenu {
   }
 
   /**
-   * Close levels menu on click on any area outside the menu
+   * Close levels menu on click on any area outside the menu.
+   * 
    * @param {event} event - DOM event instance
    */
   closeLevelsList(event) {

@@ -145,6 +145,11 @@ class Game {
     }
   }
 
+  /**
+   * It is not possible to add document.querySelectorAll('.js-target')
+   * to the game instance properties, since document.querySelectorAll method returns a static node list
+   * and the class names of the elements won't be updated when they are updated in the DOM.
+   */
   checkWin() {
     const targets = Array.from(document.querySelectorAll('.js-target'));
     if (targets.every(target => target.classList.contains('box'))) {
