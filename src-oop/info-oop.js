@@ -15,8 +15,7 @@ class Info {
   constructor(levelNumber) {
     this.level = levelNumber;
     this.stepElement = document.querySelector('.js-step');
-    this.setLevelNumber();
-    this.resetStepNumber();
+    this.init();
   }
 
   setLevelNumber() {
@@ -29,6 +28,11 @@ class Info {
 
   updateStep(stepNumber) {
     this.stepElement.textContent = `Step: ${stepNumber}`;
+  }
+
+  init() {
+    this.setLevelNumber();
+    this.resetStepNumber();
   }
 }
 
