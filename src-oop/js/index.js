@@ -88,11 +88,7 @@ class Sokoban {
   * @param {event} event - DOM event instance
   */
   playNextGameEnter(event) {
-    if (
-      event.target === this.winnerScreenButton
-      && this.currentIndex < levels.length - 1
-      && event.which === 13
-    ) {
+    if (event.which === 13) {
       this.playNextGame(event);
     }
   }
