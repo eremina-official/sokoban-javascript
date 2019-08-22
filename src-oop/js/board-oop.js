@@ -34,10 +34,7 @@ class Board {
     this.targets.forEach(target => {
       const targetSquare = document.querySelector(`.js-${target}`);
       /* js-target class is required for the game.checkWin method to work */
-      targetSquare.classList.add('js-target');
-      const targetSign = document.createElement('div');
-      targetSign.setAttribute('class', 'styled-target');
-      targetSquare.appendChild(targetSign);
+      targetSquare.classList.add('target', 'js-target');
     });
   }
 

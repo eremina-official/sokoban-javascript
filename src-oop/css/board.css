@@ -11,9 +11,6 @@
   height: 35px;
 /*   margin:-1px 0 0 -1px;
   border: 1px solid gray; */
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background-color: #fcf5e8;
 }
 
@@ -34,9 +31,17 @@
   background-color: #6b5942;
 }
 
-.styled-target {
-  width: 30%;
-  height: 30%;
+.target {
+  position: relative;
+}
+
+.target::before {
+  content: '';
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
   border-radius: 50%;
   background-color: #ebbfc0;
 }
