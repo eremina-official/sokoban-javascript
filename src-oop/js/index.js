@@ -65,6 +65,9 @@ class Sokoban {
     this.newGame.move(direction);
   }
 
+  /**
+   * Clear the current game and open a new one.
+   */
   openNewGame() {
     this.newGame.unbindEvents();
     this.newGame.board.clearBoard();
@@ -75,7 +78,8 @@ class Sokoban {
   }
   
   /**
-   * Clear the current game and open a new one. 
+   * Open a new game with the Next Game button click 
+   * and save current game index in the state. 
    *
    * @param {event} event - DOM event instance
    */
@@ -113,7 +117,8 @@ class Sokoban {
 
   /**
    * Receives a number of a level that should be opened from a levelsMenu instance, 
-   * clears the current game instance and opens a new game.
+   * clears the current game instance and opens a new game, 
+   * saves the current game index in the state.
    * 
    * @param {number} levelNumber - number of the level that should be opened.
    */
