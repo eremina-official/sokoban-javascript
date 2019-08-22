@@ -57,10 +57,7 @@ const keys = {
 
 const levels = rawLevels.map(level => {
   return level.map(item => {
-    switch (item) {
-      case item:
-        return keys[item];
-    }
+    return keys[item];
   });
 });
 
