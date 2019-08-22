@@ -64,6 +64,15 @@ class Sokoban {
     
     this.newGame.move(direction);
   }
+
+  openNewGame() {
+    this.newGame.unbindEvents();
+    this.newGame.board.clearBoard();
+    if (!this.winnerScreen.classList.contains('winner-screen-is-hidden')) {
+      this.winnerScreen.classList.add('winner-screen-is-hidden');
+    }
+    this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
+  }
   
   /**
    * Clear the current game and open a new one. 
@@ -76,9 +85,7 @@ class Sokoban {
       && this.currentIndex < levels.length - 1
     ) {
       this.currentIndex += 1;
-      this.board.textContent = '';
-      this.winnerScreen.classList.add('winner-screen-is-hidden');
-      this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
+      this.openNewGame();
     }
   }
   
@@ -100,9 +107,7 @@ class Sokoban {
    */
   reset(event) {
     if (event.target === this.resetButton) {
-      this.newGame.unbindEvents();
-      this.newGame.board.clearBoard();
-      this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
+      this.openNewGame();
     }
   }
 
@@ -114,13 +119,8 @@ class Sokoban {
    */
   goToLevel(levelNumber) {
     this.currentIndex = levelNumber;
-    this.newGame.unbindEvents();
-    this.newGame.board.clearBoard();
-    if (!this.winnerScreen.classList.contains('winner-screen-is-hidden')) {
-      this.winnerScreen.classList.add('winner-screen-is-hidden');
-    }
-    this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
     this.levelsMenu.closeLevelsListOnSelection();
+    this.openNewGame();
   }
 }
 
