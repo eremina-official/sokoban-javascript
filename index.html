@@ -4,10 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Sokoban - JavaScript game</title>
+  <title>Sokoban</title>
   <meta name="description" content="Sokoban - JavaScript game">
-  <link rel="stylesheet" href="src-oop/stylesheet.css">
-  <script src="src-oop/index.js" type="module"></script>
+  <link rel="stylesheet" href="src-oop/css/stylesheet.css">
+  <link rel="stylesheet" href="src-oop/css/levels-menu.css">
+  <link rel="stylesheet" href="src-oop/css/info.css">
+  <link rel="stylesheet" href="src-oop/css/board.css">
+  <link rel="stylesheet" href="src-oop/css/winner-screen.css">
+  <script src="src-oop/js/index.js" type="module"></script>
 </head>
 
 <body>
@@ -25,22 +29,20 @@
         </div>
       </div>
 
-      <div class="winner-screen js-winner-screen">
+      <div class="winner-screen winner-screen-is-hidden js-winner-screen">
         <p>Congratulations!</p>
         <p>You won!</p>
         <button class="winner-screen__button js-winner-screen__button">Next level</button>
       </div>
 
-      <div class="board-container">
-        <div class="info">
-          <div class="info__item level js-level"></div>
-          <div class="info__item step js-step"></div>
-          <button class="info__item reset js-reset">Reset</button>
-          <button class="info__item undo js-undo">Undo</button>
-        </div>
-
-        <div class="board js-board" tabindex="0"></div>
+      <div class="info">
+        <div class="info__item level js-level"></div>
+        <div class="info__item step js-step"></div>
+        <button class="info__item reset js-reset">Reset</button>
+        <button class="info__item undo js-undo">Undo</button>
       </div>
+
+      <div class="board js-board" tabindex="0"></div>
 
       <div class="nav-buttons">
         <button class="nav-button nav-button--up js-nav-button js-nav-button-up">&#8593;</button>
