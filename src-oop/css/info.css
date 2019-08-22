@@ -1,0 +1,17 @@
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 280px;
+  margin: 0 auto 10px;
+  color: white;
+}
+
+.info__item {
+  flex-basis: 45%;
+  margin: 0 0 10px 0;
+}
+
+.reset, .undo {
+  cursor: pointer;
+}

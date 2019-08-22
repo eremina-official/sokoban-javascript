@@ -1,0 +1,42 @@
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 280px;
+  margin: 0 auto 20px;
+  background-color: #fcf5e8;
+}
+
+.square {
+  width: calc(100% / 8);
+  height: 35px;
+/*   margin:-1px 0 0 -1px;
+  border: 1px solid gray; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fcf5e8;
+}
+
+.wall {
+  background-color: gray;
+  background-image: url('../../assets/brick-crop.jpg');
+  background-size: contain;
+  border: none;
+}
+
+.person {
+  background-color: #819c5a;
+  border-radius: 50%;
+}
+
+.box {
+  border-radius: 14%;
+  background-color: #6b5942;
+}
+
+.styled-target {
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background-color: #ebbfc0;
+}

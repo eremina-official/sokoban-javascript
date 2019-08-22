@@ -1,0 +1,69 @@
+/* Sokoban-JavaScript Game */
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* box-sizing property is not inherited */
+*, ::before, ::after {
+  box-sizing: border-box; 
+}
+
+header {
+  max-width: 1024px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  padding: 14px;
+  color: white;
+}
+
+header a {
+  text-decoration: none;
+  font-weight: bold;
+  color: rgb(107, 218, 251);
+}
+
+main {
+  max-width: 1024px;
+  margin: auto;
+  padding: 14px;
+}
+
+.game-container {
+  position: relative;
+}
+
+
+.nav-buttons {
+  width: 280px;
+  margin: auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.nav-button {
+  margin: 5px auto 5px;
+  font-size: 20px;
+  background-color: #b8b8b8;
+  cursor: pointer;
+}
+
+.nav-button--up, .nav-button--down {
+  flex-basis: 80%;
+}
+
+.nav-button--left, .nav-button--right {
+  flex-basis: 45%;
+}
+
+@media (min-width: 900px) {
+  .header__title {
+    font-size: 200%;
+  }
+}
