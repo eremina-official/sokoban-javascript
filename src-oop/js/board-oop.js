@@ -3,7 +3,7 @@
  * Receives the keyup event from the main game instance and updates the view.
  * 
  * @property {object} levelArray - array representation of the current level
- * @property {object} targets - array list of targets
+ * @property {object} targets - array list of target indices
  * @property {object} board - board DOM element
  */
 class Board {
