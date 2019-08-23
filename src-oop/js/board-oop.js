@@ -25,7 +25,7 @@ class Board {
     this.levelArray.forEach((item, itemIndex) => {
       const square = document.createElement('div');
       /* .js-itemIndex class is used in game.checkWin(), this.receiveCommand methods */
-      square.setAttribute('class', `square ${item} js-${item} js-${itemIndex}`);
+      square.setAttribute('class', `square ${item} js-${itemIndex}`);
       this.board.appendChild(square);
     });
   }
