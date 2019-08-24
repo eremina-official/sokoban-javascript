@@ -22,7 +22,7 @@ class Game {
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
-    this.history = [ currentLevel.map(element => element = (element === 'target') ? 'space' : element) ];
+    this.history = this.mapLevel(currentLevel);
     this.targets = currentLevel.reduce(this.getTargets, []);
     this.board = new Board(this.history[0], this.targets);
     this.info = new Info(levelNumber);
@@ -41,6 +41,16 @@ class Game {
   unbindEvents() {
     document.removeEventListener('keyup', this.calculateDirection);
     document.removeEventListener('click', this.undo);
+  }
+
+  mapLevel(currentLevel) {
+    const result = [ currentLevel.map(row => row.map(element => {
+      return element = (element === 'target') 
+      ? 'space' 
+      : element;
+    })) ];
+
+    return result;
   }
 
   getTargets(acc, currentValue, currentValueIndex) {
@@ -153,7 +163,6 @@ class Game {
   checkWin() {
     const targets = Array.from(document.querySelectorAll('.js-target'));
     if (targets.every(target => target.classList.contains('box'))) {
-      this.unbindEvents();
       const winnerScreen = document.querySelector('.js-winner-screen');
       winnerScreen.classList.remove('winner-screen-is-hidden');
       document.querySelector('.js-winner-screen__button').focus();
