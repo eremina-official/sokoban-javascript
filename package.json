@@ -1,0 +1,26 @@
+{
+  "name": "sokoban-javascript",
+  "version": "1.0.0",
+  "description": "**Demo:** https://eremina-official.github.io/sokoban-javascript/",
+  "main": "levels.js",
+  "scripts": {
+    "test": "jest",
+    "test:t": "jest --t="
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eremina-official/sokoban-javascript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eremina-official/sokoban-javascript/issues"
+  },
+  "homepage": "https://github.com/eremina-official/sokoban-javascript#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "jest": "^24.9.0"
+  }
+}
