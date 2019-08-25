@@ -53,11 +53,16 @@ class Game {
     return result;
   }
 
-  getTargets(acc, currentValue, currentValueIndex) {
-    if (currentValue === 'target') {
-      acc = [...acc, currentValueIndex];
-    }
-    return acc;
+  getTargets(accRow, currentRow, currentRowIndex) {
+    const rowTargets = currentRow.reduce((accValue, currentValue, currentValueIndex) => {
+      if (currentValue === 'target') {
+        accValue = [...accValue, `${currentRowIndex}-${currentValueIndex}`];
+      }
+      return accValue;
+    }, []);
+    
+    accRow = [...accRow, ...rowTargets];
+    return accRow;
   }
 
   /**
