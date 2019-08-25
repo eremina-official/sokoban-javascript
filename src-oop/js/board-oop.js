@@ -22,12 +22,23 @@ class Board {
   }
 
   renderBoard() {
-    this.levelArray.forEach((item, itemIndex) => {
-      const square = document.createElement('div');
-      /* .js-itemIndex class is used in game.checkWin(), this.receiveCommand methods */
-      square.setAttribute('class', `square ${item} js-${itemIndex}`);
-      this.board.appendChild(square);
+    const fragment = document.createDocumentFragment();
+
+    this.levelArray.forEach((row, rowIndex) => {
+      const rowElement = document.createElement('div');
+      rowElement.setAttribute('class', 'board__row');
+
+      row.forEach((item, itemIndex) => {
+        const squareElement = document.createElement('div');
+        /* .js-itemIndex class is used in game.checkWin(), this.receiveCommand methods */
+        squareElement.setAttribute('class', `square ${item} js-${rowIndex}-${itemIndex}`);
+        rowElement.appendChild(squareElement);
+      });
+
+      fragment.appendChild(rowElement);
     });
+
+    this.board.appendChild(fragment);
   }
 
   renderTarget() {
