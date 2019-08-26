@@ -89,24 +89,39 @@ class Game {
    * @param {Event} event - current DOM event instance
    */
   calculateDirection(event) {
-    let direction;
+    /* This block is added because otherwise this.move is called on any keypress.
+    Todo: refactor. */
+    if (
+      event.keyCode !== 39 &&
+      event.keyCode !== 37 &&
+      event.keyCode !== 38 &&
+      event.keyCode !== 40 
+    ) {
+      return;
+    }
+
+    let direction = {};
 
     switch (event.keyCode) {
       case 39:
-        direction = 1;
+        direction.y = 0;
+        direction.x = 1;
         break;
       case 37:
-        direction = -1;
+        direction.y = 0;
+        direction.x = -1;
         break;
       case 38:
-        direction = -8;
+        direction.y = -1;
+        direction.x = 0;
         break;
       case 40:
-        direction = 8;
+        direction.y = 1;
+        direction.x = 0;
         break;
     }
 
-    this.move(direction)
+    this.move(direction);
   }
   
   /**
