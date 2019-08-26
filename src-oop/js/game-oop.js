@@ -130,21 +130,33 @@ class Game {
    * @param {number} direction - a value to calculate the person's next position
    */
   move(direction) {
-    const levelArray = [...this.history[this.history.length - 1]];
-    const personIndex = levelArray.findIndex(element => element === 'person');
-    const nextPersonIndex = personIndex + direction;
+    const levelArray = this.getDeepCopy(this.history[this.history.length - 1]);
+    const currentPersonPosition = this.getPersonPosition(this.history[this.history.length - 1]);
+    const {personY, personX} = currentPersonPosition;
+    const {y, x} = direction;
+    const nextPersonPosition = {nextPersonY: personY + y, nextPersonX: personX + x};
 
-    if (levelArray[nextPersonIndex] === 'space') {
-      this.updateLevelArray(levelArray, personIndex, nextPersonIndex);
-      this.board.receiveCommand('makeStep', personIndex, nextPersonIndex);
+    if (
+      nextPersonPosition.nextPersonY < 0 ||
+      nextPersonPosition.nextPersonY > levelArray.length - 1
+    ) {
+      return;
+    }
+
+    if (levelArray[personY + y][personX + x] === 'space') {
+      this.updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition);
+      this.board.receiveCommand('makeStep', currentPersonPosition, nextPersonPosition);
       this.calculateStep();
     }
 
-    if (levelArray[nextPersonIndex] === 'box') {
-      const nextBoxIndex = nextPersonIndex + direction;
-      if (levelArray[nextBoxIndex] === 'space') {
-        this.updateLevelArray(levelArray, personIndex, nextPersonIndex, nextBoxIndex);
-        this.board.receiveCommand('pushBox', personIndex, nextPersonIndex, nextBoxIndex);
+    if (levelArray[personY + y][personX + x] === 'box') {
+      const {nextPersonY, nextPersonX} = nextPersonPosition;
+      const nextBoxPosition = {nextBoxY: nextPersonY + y, nextBoxX: nextPersonX + x};
+      const {nextBoxY, nextBoxX} = nextBoxPosition;
+
+      if (levelArray[nextBoxY][nextBoxX] === 'space') {
+        this.updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition, nextBoxPosition);
+        this.board.receiveCommand('pushBox', currentPersonPosition, nextPersonPosition, nextBoxPosition);
         this.calculateStep();
         this.checkWin();
       }
