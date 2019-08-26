@@ -171,11 +171,15 @@ class Game {
    * @param {number} nextPersonIndex - next index of the person
    * @param {number} nextBoxIndex - next index of the box
    */
-  updateLevelArray(levelArray, personIndex, nextPersonIndex, nextBoxIndex) {
-    levelArray.splice(personIndex, 1, 'space');
-    levelArray.splice(nextPersonIndex, 1, 'person');
-    if (nextBoxIndex) {
-      levelArray.splice(nextBoxIndex, 1, 'box');
+  updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition, nextBoxPosition) {
+    const {personY, personX} = currentPersonPosition;
+    const {nextPersonY, nextPersonX} = nextPersonPosition;
+
+    levelArray[personY].splice(personX, 1, 'space');
+    levelArray[nextPersonY].splice(nextPersonX, 1, 'person');
+    if (nextBoxPosition) {
+      const {nextBoxY, nextBoxX} = nextBoxPosition;
+      levelArray[nextBoxY].splice(nextBoxX, 1, 'box');
     }
     this.history.push(levelArray);
   }
