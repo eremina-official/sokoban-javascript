@@ -1,13 +1,16 @@
 .board {
-  display: flex;
-  flex-wrap: wrap;
   width: 280px;
   margin: 0 auto 20px;
   background-color: #fcf5e8;
 }
 
+.board__row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .square {
-  width: calc(100% / 8);
+  width: 35px;
   height: 35px;
 /*   margin:-1px 0 0 -1px;
   border: 1px solid gray; */
