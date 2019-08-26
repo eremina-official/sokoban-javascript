@@ -58,17 +58,23 @@ class Board {
    * @param {number} nextBoxIndex - index to which box should be positioned
    */
   receiveCommand(type, personIndex, nextPersonIndex, nextBoxIndex) {
-    const nextPersonPosition = document.querySelector(`.js-${nextPersonIndex}`);
-    document.querySelector(`.js-${personIndex}`).classList.replace('person', 'space');
+    const {personY, personX} = personIndex;
+    const {nextPersonY, nextPersonX} = nextPersonIndex;
 
+    const currentPersonElement = document.querySelector(`.js-${personY}-${personX}`);
+    currentPersonElement.classList.replace('person', 'space');
+
+    const nextPersonElement = document.querySelector(`.js-${nextPersonY}-${nextPersonX}`);
+    
     if (type === 'makeStep') {
-      nextPersonPosition.classList.replace('space', 'person');
+      nextPersonElement.classList.replace('space', 'person');
     }
 
     if (type === 'pushBox') {
-      nextPersonPosition.classList.replace('box', 'person');
-      const nextBoxPosition = document.querySelector(`.js-${nextBoxIndex}`);
-      nextBoxPosition.classList.replace('space', 'box');
+      nextPersonElement.classList.replace('box', 'person');
+      const {nextBoxY, nextBoxX} = nextBoxIndex;
+      const nextBoxElement = document.querySelector(`.js-${nextBoxY}-${nextBoxX}`);
+      nextBoxElement.classList.replace('space', 'box');
     }
   }
 
