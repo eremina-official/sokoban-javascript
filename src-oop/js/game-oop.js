@@ -65,6 +65,24 @@ class Game {
     return accRow;
   }
 
+  getPersonPosition(currentLevel) {
+    let personPosition = {};
+
+    currentLevel.forEach((row, rowIndex) => {
+      const personIndex = row.findIndex(item => item === 'person');
+      if (personIndex !== -1) {
+        personPosition.personY = rowIndex;
+        personPosition.personX = personIndex;
+      }
+    });
+
+    return personPosition;
+  }
+
+  getDeepCopy(levelArray) {
+    return levelArray.map(row => [...row]);
+  }
+
   /**
    * Find out which position in the current level model should be updated.
    * 
