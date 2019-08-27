@@ -100,24 +100,20 @@ class Game {
       return;
     }
 
-    let direction = {};
+    const direction = {y: 0, x: 0};
 
     switch (event.keyCode) {
       case 39:
-        direction.y = 0;
         direction.x = 1;
         break;
       case 37:
-        direction.y = 0;
         direction.x = -1;
         break;
       case 38:
         direction.y = -1;
-        direction.x = 0;
         break;
       case 40:
         direction.y = 1;
-        direction.x = 0;
         break;
     }
 
