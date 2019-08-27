@@ -47,19 +47,22 @@ class Sokoban {
       return;
     }
   
-    let direction;
-  
-    if (event.target.classList.contains('js-nav-button-left')) {
-      direction = -1;
-    }
-    if (event.target.classList.contains('js-nav-button-up')) {
-      direction = -8;
-    }
-    if (event.target.classList.contains('js-nav-button-right')) {
-      direction = 1;
-    }
-    if (event.target.classList.contains('js-nav-button-down')) {
-      direction = 8;
+    const direction = {y: 0, x: 0};
+    const navButton = +event.target.dataset.nav;
+
+    switch (navButton) {
+      case 39:
+        direction.x = 1;
+        break;
+      case 37:
+        direction.x = -1;
+        break;
+      case 38:
+        direction.y = -1;
+        break;
+      case 40:
+        direction.y = 1;
+        break;
     }
     
     this.newGame.move(direction);
@@ -117,7 +120,6 @@ class Sokoban {
 
   /**
    * Receives a number of a level that should be opened from a levelsMenu instance, 
-   * clears the current game instance and opens a new game, 
    * saves the current game index in the state.
    * 
    * @param {number} levelNumber - number of the level that should be opened.
