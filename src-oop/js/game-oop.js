@@ -137,22 +137,28 @@ class Game {
     const {personY, personX} = currentPersonPosition;
     const {y, x} = direction;
     const nextPersonPosition = {nextPersonY: personY + y, nextPersonX: personX + x};
+    const {nextPersonY, nextPersonX} = nextPersonPosition;
 
+    /* 
+      This block is needed in case there is no wall on the edge of the warehouse 
+      and the current person position is on the first or last element or row of level array. 
+      In this case nextPerson[nextPersonY] evaluates to undefined and reading its x property gives TypeError.
+      Todo: extract to a separate function, add same checkup for moving box block.
+    */
     if (
-      nextPersonPosition.nextPersonY < 0 ||
-      nextPersonPosition.nextPersonY > levelArray.length - 1
+      nextPersonY < 0 ||
+      nextPersonY > levelArray.length - 1
     ) {
       return;
     }
 
-    if (levelArray[personY + y][personX + x] === 'space') {
+    if (levelArray[nextPersonY][nextPersonX] === 'space') {
       this.updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition);
       this.board.receiveCommand('makeStep', currentPersonPosition, nextPersonPosition);
       this.calculateStep();
     }
 
-    if (levelArray[personY + y][personX + x] === 'box') {
-      const {nextPersonY, nextPersonX} = nextPersonPosition;
+    if (levelArray[nextPersonY][nextPersonX] === 'box') {
       const nextBoxPosition = {nextBoxY: nextPersonY + y, nextBoxX: nextPersonX + x};
       const {nextBoxY, nextBoxX} = nextBoxPosition;
 
