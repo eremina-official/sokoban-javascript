@@ -105,10 +105,15 @@ class Game {
     this.move(direction);
   }
 
-  calculateDirection(directionParam) {
+  /**
+   * 
+   * @param {number} expr - expression to check against cases
+   * @returns {object} - values to calculate person's next position
+   */
+  calculateDirection(expr) {
     const direction = {y: 0, x: 0};
 
-    switch (directionParam) {
+    switch (expr) {
       case 39:
         direction.x = 1;
         break;
@@ -138,37 +143,49 @@ class Game {
     const {y, x} = direction;
     const nextPersonPosition = {nextPersonY: personY + y, nextPersonX: personX + x};
     const {nextPersonY, nextPersonX} = nextPersonPosition;
+    const nextBoxPosition = {nextBoxY: nextPersonY + y, nextBoxX: nextPersonX + x};
+    const {nextBoxY, nextBoxX} = nextBoxPosition;
 
     /* 
       This block is needed in case there is no wall on the edge of the warehouse 
       and the current person position is on the first or last element or row of level array. 
       In this case nextPerson[nextPersonY] evaluates to undefined and reading its x property gives TypeError.
-      Todo: extract to a separate function, add same checkup for moving box block.
+      Todo: extract to a separate function
     */
     if (
       nextPersonY < 0 ||
-      nextPersonY > levelArray.length - 1
+      nextPersonY > levelArray.length - 1 ||
+      nextBoxY < 0 ||
+      nextBoxY > levelArray.length - 1
     ) {
       return;
     }
 
     if (levelArray[nextPersonY][nextPersonX] === 'space') {
-      this.updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition);
-      this.board.receiveCommand('makeStep', currentPersonPosition, nextPersonPosition);
-      this.calculateStep();
+      this.makeMove(levelArray, 'makeStep', currentPersonPosition, nextPersonPosition);
     }
 
-    if (levelArray[nextPersonY][nextPersonX] === 'box') {
-      const nextBoxPosition = {nextBoxY: nextPersonY + y, nextBoxX: nextPersonX + x};
-      const {nextBoxY, nextBoxX} = nextBoxPosition;
-
-      if (levelArray[nextBoxY][nextBoxX] === 'space') {
-        this.updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition, nextBoxPosition);
-        this.board.receiveCommand('pushBox', currentPersonPosition, nextPersonPosition, nextBoxPosition);
-        this.calculateStep();
-        this.checkWin();
-      }
+    if (
+      levelArray[nextPersonY][nextPersonX] === 'box' &&
+      levelArray[nextBoxY][nextBoxX] === 'space'
+    ) {
+      this.makeMove(levelArray, 'pushBox', currentPersonPosition, nextPersonPosition, nextBoxPosition);
+      this.checkWin();
     }
+  }
+
+  /**
+   * 
+   * @param {object} levelArray - array representation of the current level
+   * @param {string} moveType - type of move (make a step or push a box)
+   * @param {object} currentPersonPosition - coordinates of the current person position
+   * @param {object} nextPersonPosition - coordinates of the next person position
+   * @param {object} nextBoxPosition - coordinates of the next box position
+   */
+  makeMove(levelArray, moveType, currentPersonPosition, nextPersonPosition, nextBoxPosition) {
+    this.updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition, nextBoxPosition);
+    this.board.receiveCommand(moveType, currentPersonPosition, nextPersonPosition, nextBoxPosition);
+    this.calculateStep();
   }
 
   /**
