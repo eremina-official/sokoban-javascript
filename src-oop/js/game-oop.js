@@ -28,18 +28,18 @@ class Game {
     this.info = new Info(levelNumber);
     this.stepNumber = 0;
     this.undoButton = document.querySelector('.js-undo');
-    this.calculateDirection = this.calculateDirection.bind(this);
+    this.getDirection = this.getDirection.bind(this);
     this.undo = this.undo.bind(this);
     this.init();
   }
 
   bindEvents() {
-    document.addEventListener('keyup', this.calculateDirection);
+    document.addEventListener('keyup', this.getDirection);
     document.addEventListener('click', this.undo);
   }
 
   unbindEvents() {
-    document.removeEventListener('keyup', this.calculateDirection);
+    document.removeEventListener('keyup', this.getDirection);
     document.removeEventListener('click', this.undo);
   }
 
@@ -88,7 +88,7 @@ class Game {
    * 
    * @param {Event} event - current DOM event instance
    */
-  calculateDirection(event) {
+  getDirection(event) {
     /* This block is added because otherwise this.move is called on any keypress.
     Todo: refactor. */
     if (
@@ -100,9 +100,15 @@ class Game {
       return;
     }
 
+    const direction = this.calculateDirection(event.keyCode);
+
+    this.move(direction);
+  }
+
+  calculateDirection(directionParam) {
     const direction = {y: 0, x: 0};
 
-    switch (event.keyCode) {
+    switch (directionParam) {
       case 39:
         direction.x = 1;
         break;
@@ -117,13 +123,13 @@ class Game {
         break;
     }
 
-    this.move(direction);
+    return direction;
   }
   
   /**
    * Handles person's moving logic.
    * 
-   * @param {number} direction - a value to calculate the person's next position
+   * @param {object} direction - values to calculate the person's next position
    */
   move(direction) {
     const levelArray = this.getDeepCopy(this.history[this.history.length - 1]);
@@ -160,12 +166,12 @@ class Game {
   }
 
   /**
-   * Updates level model according to the indices calcualted in calculateDirection and move methods.
+   * Updates level model according to the coordinates calculated in getDirection and move methods.
    * 
-   * @param {object} levelArray - array representaion of the current level
-   * @param {number} personIndex - current index of the person
-   * @param {number} nextPersonIndex - next index of the person
-   * @param {number} nextBoxIndex - next index of the box
+   * @param {object} levelArray - array representation of the current level
+   * @param {object} currentPersonPosition - coordinates of the current person position
+   * @param {object} nextPersonPosition - coordinates of the next person position
+   * @param {object} nextBoxPosition - coordinates of the next box position
    */
   updateLevelArray(levelArray, currentPersonPosition, nextPersonPosition, nextBoxPosition) {
     const {personY, personX} = currentPersonPosition;
