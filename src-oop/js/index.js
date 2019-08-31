@@ -48,23 +48,8 @@ class Sokoban {
       return;
     }
   
-    const direction = {y: 0, x: 0};
     const navButton = +event.target.dataset.nav;
-
-    switch (navButton) {
-      case 39:
-        direction.x = 1;
-        break;
-      case 37:
-        direction.x = -1;
-        break;
-      case 38:
-        direction.y = -1;
-        break;
-      case 40:
-        direction.y = 1;
-        break;
-    }
+    const direction = this.newGame.calculateDirection(navButton);
     
     this.newGame.move(direction);
   }
