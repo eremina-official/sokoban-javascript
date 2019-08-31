@@ -7,7 +7,7 @@
  * @property {object} levelsMenuButtonElement - DOM element
  * @property {object} levelsListElement - DOM element
  */
-class levelsMenu {
+class LevelsMenu {
   /**
    * Create a levels menu list instance.
    * 
@@ -70,8 +70,8 @@ class levelsMenu {
   renderLevelsList() {
     this.levels.forEach((level, levelIndex) =>  {
       const levelDiv = document.createElement('div');
-      /* js-levels-menu class is used in the levelsMenu.closeLevelsList method
-         js-levels-menu-item class is used in the levelsMenu.goToLevel method
+      /* js-levels-menu class is used in the LevelsMenu.closeLevelsList method
+         js-levels-menu-item class is used in the LevelsMenu.goToLevel method
       */
       levelDiv.setAttribute('class', `levels-menu__list__item js-levels-menu-item js-levels-menu`);
       levelDiv.textContent = levelIndex + 1;
@@ -86,4 +86,4 @@ class levelsMenu {
 }
 
 
-export default levelsMenu;
+export default LevelsMenu;

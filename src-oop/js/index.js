@@ -1,6 +1,6 @@
 import levels from '../../levels.js';
 import Game from './game-oop.js';
-import levelsMenu from './levels-menu-oop.js';
+import LevelsMenu from './levels-menu-oop.js';
 
 
 /**
@@ -13,6 +13,7 @@ import levelsMenu from './levels-menu-oop.js';
  * @property {object} winnerScreen - winner screen DOM element
  * @property {object} winnerScreenButton - next game button DOM element
  * @property {Game} newGame - a game instance
+ * @property {LevelsMenu} levelsMenu - a levelsMenu instance
  */
 class Sokoban {
   constructor() {
@@ -22,7 +23,7 @@ class Sokoban {
     this.winnerScreen = document.querySelector('.js-winner-screen');
     this.winnerScreenButton = document.querySelector('.js-winner-screen__button');
     this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
-    this.levelsMenu = new levelsMenu(levels, this);
+    this.levelsMenu = new LevelsMenu(levels, this);
     this.moveWithNavButtons = this.moveWithNavButtons.bind(this);
     this.playNextGame = this.playNextGame.bind(this);
     this.playNextGameEnter = this.playNextGameEnter.bind(this);
