@@ -30,7 +30,7 @@ class Board {
 
       row.forEach((item, itemIndex) => {
         const squareElement = document.createElement('div');
-        /* .js-itemIndex class is used in game.checkWin(), this.receiveCommand methods */
+        /* .js-rowIndex-itemIndex class is used in game.checkWin(), this.receiveCommand methods */
         squareElement.setAttribute('class', `square ${item} js-${rowIndex}-${itemIndex}`);
         rowElement.appendChild(squareElement);
       });
