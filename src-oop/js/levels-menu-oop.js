@@ -69,7 +69,7 @@ class LevelsMenu {
 
   renderLevelsList() {
     this.levels.forEach((level, levelIndex) =>  {
-      const levelDiv = document.createElement('div');
+      const levelDiv = document.createElement('button');
       /* js-levels-menu class is used in the LevelsMenu.closeLevelsList method
          js-levels-menu-item class is used in the LevelsMenu.goToLevel method
       */
