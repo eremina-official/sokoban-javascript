@@ -61,21 +61,22 @@ class Board {
     const {personY, personX} = personIndex;
     const {nextPersonY, nextPersonX} = nextPersonIndex;
 
-    const currentPersonElement = document.querySelector(`.js-${personY}-${personX}`);
-    currentPersonElement.classList.replace('person', 'space');
-
-    const nextPersonElement = document.querySelector(`.js-${nextPersonY}-${nextPersonX}`);
+    this.replaceSquareClassName(personY, personX, 'person', 'space');
     
     if (type === 'makeStep') {
-      nextPersonElement.classList.replace('space', 'person');
+      this.replaceSquareClassName(nextPersonY, nextPersonX, 'space', 'person');
     }
 
     if (type === 'pushBox') {
-      nextPersonElement.classList.replace('box', 'person');
+      this.replaceSquareClassName(nextPersonY, nextPersonX, 'box', 'person');
       const {nextBoxY, nextBoxX} = nextBoxIndex;
-      const nextBoxElement = document.querySelector(`.js-${nextBoxY}-${nextBoxX}`);
-      nextBoxElement.classList.replace('space', 'box');
+      this.replaceSquareClassName(nextBoxY, nextBoxX, 'space', 'box');
     }
+  }
+
+  replaceSquareClassName(coordY, coordX, currentClassName, nextClassName) {
+    const square = document.querySelector(`.js-${coordY}-${coordX}`);
+    square.classList.replace(currentClassName, nextClassName);
   }
 
   clearBoard() {
