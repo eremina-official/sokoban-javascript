@@ -1,0 +1,52 @@
+.board-size-wrapper {
+  padding-bottom: 14px;
+}
+
+.board-size-input-wrapper {
+  padding-bottom: 14px;
+}
+.board-size-input-wrapper label {
+  display: block;
+  padding-bottom: 10px;
+  color: white;
+}
+
+.board-size-input-wrapper select {
+  display: block;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+}
+
+.board-size-submit {
+  padding: 3px 20px;
+  cursor: pointer;
+}
+
+.option-wrapper {
+  padding-bottom: 10px;
+  color: white;
+}
+.option-wrapper > * {
+  cursor: pointer;
+}
+
+
+
+@media (min-width: 700px) {
+  .board-size-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .board-size-wrapper > * {
+    margin-right: 50px;
+  }
+  .board-size-input-wrapper {
+    padding: 0;
+  }
+  
+  .board-maker-wrapper {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+
