@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Level Maker</title>
+  <meta name="description" content="Sokoban - Level Maker">
+  <link rel="stylesheet" href="src-oop/css/stylesheet.css">
+  <link rel="stylesheet" href="src-oop/css/level-maker.css">
+</head>
+
+<body>
+  <header>
+    <a href="#" class="header__title">Sokoban - Level Maker</a> 
+    <span>View code on <a href="https://github.com/eremina-official/sokoban-javascript">GitHub</a></span>
+  </header>
+
+  <main>
+    <div class="level-maker-container">
+
+      <div class="board-size-wrapper">
+        <div class="board-size-input-wrapper">
+          <label for="board-row">Choose number of rows</label>
+          <select name="board-row" id="board-row">
+            <option value="7">7</option>
+            <option value="8" selected>8</option>
+            <option value="9">9</option>
+          </select>
+        </div>
+
+        <div class="board-size-input-wrapper">
+          <label for="board-column">Choose number of columns</label>
+          <select name="board-column" id="board-column">
+            <option value="7">7</option>
+            <option value="8" selected>8</option>
+            <option value="9">9</option>
+          </select>
+        </div>
+
+        <button class="board-size-submit">Apply</button>
+      </div>
+
+      <div class="board-maker-wrapper">
+        <div class="board"></div>
+        
+        <div class="board-square-input-wrapper">
+          <div class="option-wrapper">
+            <input type="radio" name="board-square-input" id="option-wall" checked>
+            <label for="option-wall">Wall</label>
+          </div>
+
+          <div class="option-wrapper">
+            <input type="radio" name="board-square-input" id="option-space">
+            <label for="option-space">Space</label>
+          </div>
+
+          <div class="option-wrapper">
+            <input type="radio" name="board-square-input" id="option-target">
+            <label for="option-target">Target</label>
+          </div>
+          
+          <div class="option-wrapper">
+            <input type="radio" name="board-square-input" id="option-box">
+            <label for="option-box">Box</label>
+          </div>
+
+          <div class="option-wrapper">
+            <input type="radio" name="board-square-input" id="option-person">
+            <label for="option-person">Person</label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>
