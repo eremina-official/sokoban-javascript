@@ -26,7 +26,6 @@ class Sokoban {
     this.levelsMenu = new LevelsMenu(levels, this);
     this.moveWithNavButtons = this.moveWithNavButtons.bind(this);
     this.playNextGame = this.playNextGame.bind(this);
-    this.playNextGameEnter = this.playNextGameEnter.bind(this);
     this.reset = this.reset.bind(this);
     this.bindEvents();
   }
@@ -34,7 +33,6 @@ class Sokoban {
   bindEvents() {
     document.addEventListener('click', this.moveWithNavButtons);
     document.addEventListener('click', this.playNextGame);
-    document.addEventListener('keyup', this.playNextGameEnter);
     document.addEventListener('click', this.reset);
   }
 
@@ -79,17 +77,6 @@ class Sokoban {
     ) {
       this.currentIndex += 1;
       this.openNewGame();
-    }
-  }
-  
- /**
-  * Open next game on enter keypress when the Next Game button of the winner screen is in focus.
-  * 
-  * @param {event} event - DOM event instance
-  */
-  playNextGameEnter(event) {
-    if (event.which === 13) {
-      this.playNextGame(event);
     }
   }
   
