@@ -1,6 +1,3 @@
-
-import { renderBoard } from './utils.js';
-
 /**
  * Renders the view according to a model.
  * Receives the keyup event from the main game instance and updates the view.
@@ -21,8 +18,27 @@ class Board {
     this.levelArray = levelArray;
     this.targets = targets;
     this.board = document.querySelector('.js-board');
-    this.renderBoard = renderBoard;
     this.init();
+  }
+
+  renderBoard() {
+    const fragment = document.createDocumentFragment();
+  
+    this.levelArray.forEach((row, rowIndex) => {
+      const rowElement = document.createElement('div');
+      rowElement.setAttribute('class', 'board__row');
+  
+      row.forEach((item, itemIndex) => {
+        const squareElement = document.createElement('div');
+        /* .js-rowIndex-itemIndex class is used in game.checkWin(), this.receiveCommand methods */
+        squareElement.setAttribute('class', `square ${item} js-${rowIndex}-${itemIndex}`);
+        rowElement.appendChild(squareElement);
+      });
+  
+      fragment.appendChild(rowElement);
+    });
+  
+    this.board.appendChild(fragment);
   }
 
   renderTarget() {
@@ -68,7 +84,7 @@ class Board {
   }
 
   init() {
-    this.renderBoard(this.levelArray, this.board);
+    this.renderBoard();
     this.renderTarget();
   }
 }
