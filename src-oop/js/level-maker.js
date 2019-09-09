@@ -4,14 +4,17 @@ class LevelMaker {
     this.boardColumnSelectElement = document.querySelector('#board-column');
     this.boardSizeSubmitButtonElement = document.querySelector('.js-board-size-submit');
     this.levelMakerBoardElement = document.querySelector('.js-level-maker-board');
-    this.radioInputElement = document.querySelectorAll('input[name="board-square-input"]');
+    this.squareInputCheckedValue = 'wall';
     this.handleBoardSize = this.handleBoardSize.bind(this);
+    this.handleSquareInputChange = this.handleSquareInputChange.bind(this);
+    this.handleSquareChange = this.handleSquareChange.bind(this);
     this.bindEvents();
-    console.log(this.radioInputElement)
   }
 
   bindEvents() {
     document.addEventListener('click', this.handleBoardSize);
+    document.addEventListener('change', this.handleSquareInputChange);
+    document.addEventListener('click', this.handleSquareChange);
   }
 
   handleBoardSize(event) {
@@ -19,8 +22,8 @@ class LevelMaker {
 
     const rowsNumber = +this.boardRowSelectElement.value;
     const columnsNumber = +this.boardColumnSelectElement.value;
-    this.getLevelArray(rowsNumber, columnsNumber);
-
+    const levelArray = this.getLevelArray(rowsNumber, columnsNumber);
+    this.makeNewLevelMakerBoard(levelArray);
   }
 
   getLevelArray(rowsNumber, columnsNumber) {
@@ -44,6 +47,51 @@ class LevelMaker {
     });
 
     return mappedLevelArray;
+  }
+
+  makeNewLevelMakerBoard(levelArray) {
+    this.clearLevelMakerBoard();
+    this.renderLevelMakerBoard(levelArray);
+  }
+
+  clearLevelMakerBoard() {
+    this.levelMakerBoardElement.textContent = '';
+  }
+
+  renderLevelMakerBoard(levelArray) {
+    const fragment = document.createDocumentFragment();
+  
+    levelArray.forEach(row => {
+      const rowElement = document.createElement('div');
+      rowElement.setAttribute('class', 'board__row');
+  
+      row.forEach(item => {
+        const squareElement = document.createElement('div');
+        squareElement.setAttribute('class', `square`);
+        squareElement.setAttribute('data-square', `${item}`)
+        rowElement.appendChild(squareElement);
+      });
+  
+      fragment.appendChild(rowElement);
+    });
+  
+    this.levelMakerBoardElement.appendChild(fragment);
+  }
+
+  handleSquareInputChange(event) {
+    if (event.target.name !== 'board-square-input') { return; }
+
+    this.squareInputCheckedValue = event.target.value;
+  }
+
+  handleSquareChange(event) {
+    if (!event.target.classList.contains('square')) { return; }
+
+    if (event.target.dataset.square === this.squareInputCheckedValue) {
+      event.target.dataset.square = 'space';
+    } else {
+      event.target.dataset.square = this.squareInputCheckedValue;
+    }
   }
 
 }
