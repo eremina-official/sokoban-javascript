@@ -1,5 +1,5 @@
 .board-size-wrapper {
-  padding-bottom: 14px;
+  padding-bottom: 50px;
 }
 
 .board-size-input-wrapper {
@@ -22,9 +22,68 @@
   cursor: pointer;
 }
 
+
+.board-maker-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.board-maker-wrapper .board {
+  background-color: #fcf5e8;
+  margin: 0 20px 20px 0;
+  cursor: pointer;
+}
+
+.board__row {
+  display: flex;
+}
+
+.square {
+  width: 35px;
+  height: 35px;
+/*   margin:-1px 0 0 -1px;
+  border: 1px solid gray; */
+  background-color: #fcf5e8;
+}
+
+[data-square='wall'] {
+  background-color: gray;
+  background-image: url('../../assets/brick-crop.jpg');
+  background-size: contain;
+  border: none;
+}
+
+[data-square='person'] {
+  background-color: #819c5a;
+  border-radius: 50%;
+}
+
+[data-square='box'] {
+  border-radius: 14%;
+  background-color: #6b5942;
+}
+
+[data-square='target'] {
+  position: relative;
+}
+
+[data-square='target']::before {
+  content: '';
+  width: 50%;
+  height: 50%;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+  border-radius: 50%;
+  background-color: #ebbfc0;
+}
+
+
 .option-wrapper {
   padding-bottom: 10px;
   color: white;
+  cursor: pointer;
 }
 .option-wrapper > * {
   cursor: pointer;
@@ -42,11 +101,6 @@
   }
   .board-size-input-wrapper {
     padding: 0;
-  }
-  
-  .board-maker-wrapper {
-    display: flex;
-    justify-content: flex-end;
   }
 }
 
