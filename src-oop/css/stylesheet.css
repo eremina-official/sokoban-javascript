@@ -50,7 +50,7 @@ main {
 }
 
 .nav-button {
-  margin: 5px auto 5px;
+  margin: 5px auto 15px;
   font-size: 20px;
   background-color: #b8b8b8;
   cursor: pointer;
