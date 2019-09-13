@@ -5,7 +5,6 @@
 
 .board__row {
   display: flex;
-  flex-wrap: wrap;
 }
 
 .square {
