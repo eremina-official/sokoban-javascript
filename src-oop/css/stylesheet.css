@@ -22,7 +22,7 @@ header {
   max-width: 1024px;
   height: 60px;
   margin: auto;
-  padding: 0 10px;
+  padding: 0 14px;
   display: flex;
   align-items: center;
 }
@@ -33,7 +33,7 @@ header a {
   color: rgb(107, 218, 251);
 }
 .header__title {
-  padding: 10px;
+  padding: 10px 0;
   flex-basis: calc(100% / 6);
 }
 .header__nav{
@@ -69,6 +69,11 @@ main {
   max-width: 1024px;
   margin: auto;
   padding: 20px 14px;
+}
+h1 {
+  margin: 16px 0 30px;
+  font-size: 18px;
+  color: white;
 }
 
 .game-container {
@@ -110,5 +115,8 @@ main {
 @media (min-width: 900px) {
   .header__title {
     font-size: 20px;
+  }
+  h1 {
+    font-size: 30px;
   }
 }
