@@ -16,8 +16,15 @@
 
 <body>
   <header>
-    <a href="#" class="header__title">Sokoban</a> 
-    <span>View code on <a href="https://github.com/eremina-official/sokoban-javascript">GitHub</a></span>
+    <div class="header">
+      <a href="https://eremina-official.github.io/sokoban-javascript/" class="header__title">Sokoban</a>
+      <nav class="header__nav">
+        <a href="https://eremina-official.github.io/sokoban-javascript/" class="nav__a--active">Play</a>
+        <a href="https://eremina-official.github.io/sokoban-javascript/level-maker.html">Build</a>
+        <a href="https://eremina-official.github.io/sokoban-javascript/about.html">About</a>
+      </nav>
+      <span class="header__github">View code on <a href="https://github.com/eremina-official/sokoban-javascript">GitHub</a></span>
+    </div>
   </header>
   <main>
     <div class="game-container js-game-container">
@@ -51,7 +58,6 @@
         <button class="nav-button nav-button--right js-nav-button" data-nav="39">&#8594;</button>
         <button class="nav-button nav-button--down js-nav-button" data-nav="40">&#8595;</button>
       </div>
-      <div><a href="./level-maker.html">Go to Level Maker</a></div>
   </main>
 </body>
 </html>
