@@ -29,6 +29,7 @@
 .board-maker-wrapper {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .board-maker-wrapper .board {
@@ -88,7 +89,6 @@
 
 
 .option-wrapper {
-  padding-bottom: 14px;
   font-size: 18px;
   color: white;
   cursor: pointer;
@@ -97,11 +97,13 @@
   cursor: pointer;
 }
 input[type="radio"] {
-  display: none;
+  position: absolute;
+  opacity: 0;
 }
 .option-wrapper label {
   display: flex;
   align-items: center;
+  padding: 10px 12px;
 }
 span.label-image {
   display: inline-block;
@@ -116,6 +118,10 @@ span.label-image {
 }
 input[type="radio"]:checked ~ label {
   color: rgb(107, 218, 251);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+input[type="radio"]:focus ~ label {
+  outline: 1px solid blue;
 }
 
 
