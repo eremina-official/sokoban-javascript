@@ -1,11 +1,13 @@
 /**
  * Creates an instance of a sokoban levels contructor.
  * 
- * @property {object} - select DOM element
- * @property {object} - select DOM element
- * @property {object} - button DOM element
- * @property {object} - board DOM element
- * @property {string} - value of currently selected radio input with name="board-square-input"
+ * @property {object} boardRowSelectElement - select DOM element
+ * @property {object} boardColumnSelectElement - select DOM element
+ * @property {object} boardSizeSubmitButtonElement - button DOM element
+ * @property {object} levelMakerBoardElement - board DOM element
+ * @property {object} iframeContainerElement - iframe DOM element
+ * @property {object} selectOptionsRange - range of board rows and columns amount
+ * @property {string} squareInputCheckedValue - value of currently selected radio input with name="board-square-input"
  */
 
 class LevelMaker {
