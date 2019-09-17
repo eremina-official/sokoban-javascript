@@ -42,6 +42,7 @@ class Game {
 
   unbindEvents() {
     document.removeEventListener('keyup', this.getDirection);
+    document.removeEventListener('click', this.moveWithNavButtons);
     document.removeEventListener('click', this.undo);
   }
 
