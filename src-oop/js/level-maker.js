@@ -100,12 +100,12 @@ class LevelMaker {
    * Clear the previous board and create a new one.
    */
   makeNewLevelMakerBoard(levelArray) {
-    this.clearLevelMakerBoard();
+    this.clearElementContent(this.levelMakerBoardElement);
     this.renderLevelMakerBoard(levelArray);
   }
 
-  clearLevelMakerBoard() {
-    this.levelMakerBoardElement.textContent = '';
+  clearElementContent(DOMelement) {
+    DOMelement.textContent = '';
   }
 
   /**
