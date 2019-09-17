@@ -29,12 +29,14 @@ class Game {
     this.stepNumber = 0;
     this.undoButton = document.querySelector('.js-undo');
     this.getDirection = this.getDirection.bind(this);
+    this.moveWithNavButtons = this.moveWithNavButtons.bind(this);
     this.undo = this.undo.bind(this);
     this.init();
   }
 
   bindEvents() {
     document.addEventListener('keyup', this.getDirection);
+    document.addEventListener('click', this.moveWithNavButtons);
     document.addEventListener('click', this.undo);
   }
 
@@ -102,6 +104,22 @@ class Game {
 
     const direction = this.calculateDirection(event.keyCode);
 
+    this.move(direction);
+  }
+
+  /**
+   * Calculate direction of person's moves when the navigation buttons are pressed.
+   * 
+   * @param {event} event - DOM event instance
+   */
+  moveWithNavButtons(event) {
+    if (!event.target.classList.contains('js-nav-button')) {
+      return;
+    }
+  
+    const navButton = +event.target.dataset.nav;
+    const direction = this.calculateDirection(navButton);
+    
     this.move(direction);
   }
 

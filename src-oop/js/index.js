@@ -24,32 +24,14 @@ class Sokoban {
     this.winnerScreenButton = document.querySelector('.js-winner-screen__button');
     this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
     this.levelsMenu = new LevelsMenu(levels, this);
-    this.moveWithNavButtons = this.moveWithNavButtons.bind(this);
     this.playNextGame = this.playNextGame.bind(this);
     this.reset = this.reset.bind(this);
     this.bindEvents();
   }
 
   bindEvents() {
-    document.addEventListener('click', this.moveWithNavButtons);
     document.addEventListener('click', this.playNextGame);
     document.addEventListener('click', this.reset);
-  }
-
-  /**
-   * Calculate direction of person's moves when the navigation buttons are pressed.
-   * 
-   * @param {event} event - DOM event instance
-   */
-  moveWithNavButtons(event) {
-    if (!event.target.classList.contains('js-nav-button')) {
-      return;
-    }
-  
-    const navButton = +event.target.dataset.nav;
-    const direction = this.newGame.calculateDirection(navButton);
-    
-    this.newGame.move(direction);
   }
 
   /**
