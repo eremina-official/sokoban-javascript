@@ -1,3 +1,13 @@
+/**
+ * Creates an instance of a sokoban levels contructor.
+ * 
+ * @property {object} - select DOM element
+ * @property {object} - select DOM element
+ * @property {object} - button DOM element
+ * @property {object} - board DOM element
+ * @property {string} - value of currently selected radio input with name="board-square-input"
+ */
+
 class LevelMaker {
   constructor() {
     this.boardRowSelectElement = document.querySelector('#board-row');
@@ -17,6 +27,10 @@ class LevelMaker {
     document.addEventListener('click', this.handleSquareChange);
   }
 
+  /**
+   * Handle user input of rows and columns number and create a new sokoban board accordingly 
+   * to entered values.
+   */
   handleBoardSize(event) {
     if (event.target !== this.boardSizeSubmitButtonElement) { return; };
 
@@ -26,6 +40,14 @@ class LevelMaker {
     this.makeNewLevelMakerBoard(levelArray);
   }
 
+  /**
+   * Creates an array structure representing a sokoban board with selected 
+   * number of rows and columns.
+   * 
+   * @param {number} - number of rows
+   * @param {number} - number of columns
+   * @returns {object} - array representing a structure of sokoban board
+   */
   getLevelArray(rowsNumber, columnsNumber) {
     /* levelArray is filled with spaces first and then with walls 
     to make it easier to refactor in case it should not be filled or 
@@ -49,6 +71,9 @@ class LevelMaker {
     return mappedLevelArray;
   }
 
+  /**
+   * Clear the previous board and create a new one.
+   */
   makeNewLevelMakerBoard(levelArray) {
     this.clearLevelMakerBoard();
     this.renderLevelMakerBoard(levelArray);
@@ -58,6 +83,9 @@ class LevelMaker {
     this.levelMakerBoardElement.textContent = '';
   }
 
+  /**
+   * Render board to the DOM.
+   */
   renderLevelMakerBoard(levelArray) {
     const fragment = document.createDocumentFragment();
   
@@ -78,12 +106,19 @@ class LevelMaker {
     this.levelMakerBoardElement.appendChild(fragment);
   }
 
+  /**
+   * Handles user input. Captures the value of a currently selected radio input of a board square type.
+   */
   handleSquareInputChange(event) {
     if (event.target.name !== 'board-square-input') { return; }
 
     this.squareInputCheckedValue = event.target.value;
   }
 
+  /**
+   * Handles user actions. Changes the type of a board squares according to a currently selected 
+   * radio input value.
+   */
   handleSquareChange(event) {
     if (!event.target.classList.contains('square')) { return; }
 
