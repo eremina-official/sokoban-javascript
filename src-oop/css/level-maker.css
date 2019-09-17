@@ -37,6 +37,7 @@
 .board-maker-wrapper {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .board-maker-wrapper .board {
@@ -96,7 +97,7 @@
 
 
 .option-wrapper {
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   cursor: pointer;
 }
