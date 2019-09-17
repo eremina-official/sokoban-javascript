@@ -32,20 +32,12 @@
       <div class="board-size-wrapper">
         <div class="board-size-input-wrapper">
           <label for="board-row">Choose number of rows</label>
-          <select name="board-row" id="board-row">
-            <option value="7">7</option>
-            <option value="8" selected>8</option>
-            <option value="9">9</option>
-          </select>
+          <select name="board-row" id="board-row"></select>
         </div>
 
         <div class="board-size-input-wrapper">
           <label for="board-column">Choose number of columns</label>
-          <select name="board-column" id="board-column">
-            <option value="7">7</option>
-            <option value="8" selected>8</option>
-            <option value="9">9</option>
-          </select>
+          <select name="board-column" id="board-column"></select>
         </div>
 
         <button class="board-size-submit js-board-size-submit">Apply</button>
@@ -97,7 +89,10 @@
         </div>
       </div>
 
+      <button class="play-current-level-maker js-play-current-level-maker">Solve current puzzle</button>
     </div>
+
+    <div class="iframe-container"></div>
   </main>
 </body>
 </html>
