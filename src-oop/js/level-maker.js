@@ -14,17 +14,40 @@ class LevelMaker {
     this.boardColumnSelectElement = document.querySelector('#board-column');
     this.boardSizeSubmitButtonElement = document.querySelector('.js-board-size-submit');
     this.levelMakerBoardElement = document.querySelector('.js-level-maker-board');
+    this.selectOptionsRange = {bottom: 6, top: 30};
     this.squareInputCheckedValue = 'wall';
     this.handleBoardSize = this.handleBoardSize.bind(this);
     this.handleSquareInputChange = this.handleSquareInputChange.bind(this);
     this.handleSquareChange = this.handleSquareChange.bind(this);
     this.bindEvents();
+    this.renderSelectOptions(this.selectOptionsRange, this.boardRowSelectElement);
+    this.renderSelectOptions(this.selectOptionsRange, this.boardColumnSelectElement);
   }
 
   bindEvents() {
     document.addEventListener('click', this.handleBoardSize);
     document.addEventListener('change', this.handleSquareInputChange);
     document.addEventListener('click', this.handleSquareChange);
+  }
+
+  /**
+   * Renders options for select elements.
+   * 
+   * @param {object} - range of options
+   * @param {object} - select DOM element
+   */
+  renderSelectOptions(range, DOMelement) {
+    const fragment = document.createDocumentFragment();
+    let i = range.bottom;
+    while (i <= range.top) {
+      const option = document.createElement('option');
+      option.setAttribute('value', i);
+      option.textContent = i;
+      fragment.appendChild(option);
+      i++;
+    }
+    fragment.firstChild.setAttribute('selected', true);
+    DOMelement.appendChild(fragment);
   }
 
   /**
