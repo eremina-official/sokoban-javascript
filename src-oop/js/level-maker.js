@@ -16,11 +16,13 @@ class LevelMaker {
     this.boardColumnSelectElement = document.querySelector('#board-column');
     this.boardSizeSubmitButtonElement = document.querySelector('.js-board-size-submit');
     this.levelMakerBoardElement = document.querySelector('.js-level-maker-board');
+    this.iframeContainerElement = document.querySelector('.iframe-container');
     this.selectOptionsRange = {bottom: 6, top: 30};
     this.squareInputCheckedValue = 'wall';
     this.handleBoardSize = this.handleBoardSize.bind(this);
     this.handleSquareInputChange = this.handleSquareInputChange.bind(this);
     this.handleSquareChange = this.handleSquareChange.bind(this);
+    this.playCurrentLevelMaker = this.playCurrentLevelMaker.bind(this);
     this.bindEvents();
     this.renderSelectOptions(this.selectOptionsRange, this.boardRowSelectElement);
     this.renderSelectOptions(this.selectOptionsRange, this.boardColumnSelectElement);
@@ -30,6 +32,7 @@ class LevelMaker {
     document.addEventListener('click', this.handleBoardSize);
     document.addEventListener('change', this.handleSquareInputChange);
     document.addEventListener('click', this.handleSquareChange);
+    document.addEventListener('click', this.playCurrentLevelMaker);
   }
 
   /**
@@ -116,7 +119,7 @@ class LevelMaker {
   
     levelArray.forEach(row => {
       const rowElement = document.createElement('div');
-      rowElement.setAttribute('class', 'board__row');
+      rowElement.setAttribute('class', 'board__row js-board-row');
   
       row.forEach(item => {
         const squareElement = document.createElement('div');
@@ -154,6 +157,27 @@ class LevelMaker {
     }
   }
 
+  playCurrentLevelMaker(event) {
+    if (!event.target.classList.contains('js-play-current-level-maker')) { return; }
+
+    this.clearElementContent(this.iframeContainerElement);
+
+    const currentIframe = document.createElement('iframe');
+    currentIframe.setAttribute('src', 'https://eremina-official.github.io/sokoban-javascript/level-maker-play.html');
+     
+    this.iframeContainerElement.appendChild(currentIframe);
+
+    currentIframe.contentWindow.levelArray = this.getComposedLevelArray();;
+  }
+
+  getComposedLevelArray() {
+    const rowsArray = Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'));
+
+    const mappedRowsArray = rowsArray.map(rowArray => rowArray = Array.from(rowArray.childNodes))
+    .map(rowArray => rowArray.map(rowSquare => rowSquare.dataset.square));
+    
+    return mappedRowsArray;
+  }
 }
 
 const newLevelMaker = new LevelMaker();
