@@ -105,6 +105,21 @@ h1 {
   flex-basis: 45%;
 }
 
+/* button style */
+.btn {
+  padding: 4px 14px;
+  font-size: 16px; 
+  border: 1px solid black;
+  color: black;
+  background-color: #f0f0f0;
+  cursor: pointer;
+}
+.btn:hover {
+  border: 1px solid rgb(107, 218, 251);
+  color: rgb(107, 218, 251);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 
 @media (max-width: 500px) {
   .header__github {
