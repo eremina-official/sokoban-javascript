@@ -1,3 +1,6 @@
+import LevelMakerPlay from './level-maker-play.js';
+
+
 /**
  * Creates an instance of a sokoban levels contructor.
  * 
@@ -16,7 +19,7 @@ class LevelMaker {
     this.boardColumnSelectElement = document.querySelector('#board-column');
     this.boardSizeSubmitButtonElement = document.querySelector('.js-board-size-submit');
     this.levelMakerBoardElement = document.querySelector('.js-level-maker-board');
-    this.iframeContainerElement = document.querySelector('.iframe-container');
+    this.playContainerElement = document.querySelector('.js-play-container');
     this.selectOptionsRange = {bottom: 6, top: 30};
     this.squareInputCheckedValue = 'wall';
     this.handleBoardSize = this.handleBoardSize.bind(this);
@@ -160,14 +163,15 @@ class LevelMaker {
   playCurrentLevelMaker(event) {
     if (!event.target.classList.contains('js-play-current-level-maker')) { return; }
 
-    this.clearElementContent(this.iframeContainerElement);
+    if (this.playContainerElement.classList.contains('play-level-maker-is-hidden')) {
+      this.playContainerElement.classList.remove('play-level-maker-is-hidden');
+    }
 
-    const currentIframe = document.createElement('iframe');
-    currentIframe.setAttribute('src', 'https://eremina-official.github.io/sokoban-javascript/level-maker-play.html');
-     
-    this.iframeContainerElement.appendChild(currentIframe);
-
-    currentIframe.contentWindow.levelArray = this.getComposedLevelArray();;
+    if (this.newLevelMakerPlay) {
+      this.newLevelMakerPlay.board.clearBoard();
+      this.newLevelMakerPlay.unbindEvents();
+    }
+    this.newLevelMakerPlay = new LevelMakerPlay(this.getComposedLevelArray());
   }
 
   getComposedLevelArray() {
