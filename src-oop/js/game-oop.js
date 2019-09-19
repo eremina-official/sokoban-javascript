@@ -118,6 +118,7 @@ class Game {
       return;
     }
 
+    event.preventDefault();
     const direction = this.calculateDirection(event.keyCode);
 
     this.move(direction);
