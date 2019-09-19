@@ -32,6 +32,7 @@ button.board-size-submit {
 
 
 .board-maker-wrapper {
+  margin-bottom: 20px;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -39,14 +40,14 @@ button.board-size-submit {
   background-color: rgba(0, 0, 0, 0.3);
 }
 
-.board-maker-wrapper .board {
+.board-maker-wrapper .level-maker-board {
   background-color: #fcf5e8;
   margin: 0 20px 20px 0;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
 }
 
-.board__row {
+.level-maker-board .board__row {
   display: flex;
 }
 
@@ -55,7 +56,7 @@ button.board-size-submit {
   background-color: #f9ebd1;
 }
  */
-.square {
+ .board-maker-wrapper .square {
   width: 35px;
   height: 35px;
   margin:-1px 0 0 -1px;
@@ -63,27 +64,27 @@ button.board-size-submit {
   background-color: #fcf5e8;
 }
 
-[data-square='wall'] {
+.board-maker-wrapper [data-square='wall'] {
   background-image: url('../../assets/brick-crop.jpg');
   background-size: contain;
   border: none;
 }
 
-[data-square='person'] {
+.board-maker-wrapper [data-square='person'] {
   background-color: #819c5a;
   border-radius: 50%;
 }
 
-[data-square='box'] {
+.board-maker-wrapper [data-square='box'] {
   border-radius: 14%;
   background-color: #6b5942;
 }
 
-[data-square='target'] {
+.board-maker-wrapper [data-square='target'] {
   position: relative;
 }
 
-[data-square='target']::before {
+.board-maker-wrapper [data-square='target']::before {
   content: '';
   width: 50%;
   height: 50%;
@@ -147,10 +148,12 @@ button.play-current-level-maker {
   background-color: white;
 }
 
-iframe {
-  width: 100%;
-  height: 1000px;
-  border: none;
+.play-level-maker-container {
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.play-level-maker-container.play-level-maker-is-hidden {
+  display: none;
 }
 
 
