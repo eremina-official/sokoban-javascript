@@ -194,6 +194,16 @@ class LevelMaker {
     .map(rowArray => rowArray.map(rowSquare => rowSquare.dataset.square));
     return rowsArray;
   }
+
+  checkPerson(currentLevelArray) {
+    const persons = currentLevelArray.reduce((acc, currentValue) => {
+      currentValue = currentValue.filter(item => item === 'person');
+      acc = [...acc, ...currentValue];
+      return acc;
+    }, []);
+    
+    return persons.length;
+  }
 }
 
 const newLevelMaker = new LevelMaker();
