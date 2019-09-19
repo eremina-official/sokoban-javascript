@@ -171,12 +171,10 @@ class LevelMaker {
   }
 
   getComposedLevelArray() {
-    const rowsArray = Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'));
-
-    const mappedRowsArray = rowsArray.map(rowArray => rowArray = Array.from(rowArray.childNodes))
+    const rowsArray = Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'))
+    .map(rowArray => rowArray = Array.from(rowArray.childNodes))
     .map(rowArray => rowArray.map(rowSquare => rowSquare.dataset.square));
-    
-    return mappedRowsArray;
+    return rowsArray;
   }
 }
 
