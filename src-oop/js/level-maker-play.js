@@ -8,6 +8,5 @@ class LevelMakerPlay extends Game {
   }
 }
 
-const newLevelMakerPlay = new LevelMakerPlay(levelArray);
 
 export default LevelMakerPlay;
