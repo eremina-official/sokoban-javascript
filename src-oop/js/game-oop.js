@@ -29,6 +29,7 @@ class Game {
     this.stepNumber = 0;
     this.undoButton = document.querySelector('.js-undo');
     this.getDirection = this.getDirection.bind(this);
+    this.preventPageScroll = this.preventPageScroll.bind(this);
     this.moveWithNavButtons = this.moveWithNavButtons.bind(this);
     this.undo = this.undo.bind(this);
     this.init();
@@ -36,14 +37,28 @@ class Game {
 
   bindEvents() {
     document.addEventListener('keyup', this.getDirection);
+    document.addEventListener('keydown', this.preventPageScroll);
     document.addEventListener('click', this.moveWithNavButtons);
     document.addEventListener('click', this.undo);
   }
 
   unbindEvents() {
     document.removeEventListener('keyup', this.getDirection);
+    document.removeEventListener('keydown', this.preventPageScroll);
     document.removeEventListener('click', this.moveWithNavButtons);
     document.removeEventListener('click', this.undo);
+  }
+
+  preventPageScroll(event) {
+    if (
+      event.keyCode !== 39 &&
+      event.keyCode !== 37 &&
+      event.keyCode !== 38 &&
+      event.keyCode !== 40 
+    ) {
+      return;
+    }
+    event.preventDefault();
   }
 
   mapLevel(currentLevel) {
