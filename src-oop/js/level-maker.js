@@ -20,6 +20,7 @@ class LevelMaker {
     this.boardSizeSubmitButtonElement = document.querySelector('.js-board-size-submit');
     this.levelMakerBoardElement = document.querySelector('.js-level-maker-board');
     this.playContainerElement = document.querySelector('.js-play-container');
+    this.notificationElement = document.querySelector('.js-notification');
     this.selectOptionsRange = {bottom: 6, top: 30};
     this.squareInputCheckedValue = 'wall';
     this.handleBoardSize = this.handleBoardSize.bind(this);
@@ -171,7 +172,20 @@ class LevelMaker {
       this.newLevelMakerPlay.board.clearBoard();
       this.newLevelMakerPlay.unbindEvents();
     }
-    this.newLevelMakerPlay = new LevelMakerPlay(this.getComposedLevelArray());
+
+    const currentLevelArray = this.getComposedLevelArray();
+
+    switch (this.checkPerson(currentLevelArray)) {
+      case 0:
+        this.notificationElement.textContent = 'Please add a person to the board.'
+        break;
+      case 1:
+        this.notificationElement.textContent = '';
+        this.newLevelMakerPlay = new LevelMakerPlay(currentLevelArray);        
+        break;
+      default:
+        this.notificationElement.textContent = 'There should be only one person on the board.'
+    }
   }
 
   getComposedLevelArray() {
