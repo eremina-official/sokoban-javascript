@@ -8,7 +8,9 @@
   <meta name="description" content="Sokoban - Level Maker">
   <link rel="stylesheet" href="src-oop/css/stylesheet.css">
   <link rel="stylesheet" href="src-oop/css/level-maker.css">
-  <script src="src-oop/js/level-maker.js" type="module" defer></script>
+  <link rel="stylesheet" href="src-oop/css/board.css">
+  <link rel="stylesheet" href="src-oop/css/info.css">
+  <script src="src-oop/js/level-maker.js" type="module"></script>
 </head>
 
 <body>
@@ -92,10 +94,26 @@
           <button class="btn play-current-level-maker js-play-current-level-maker">Solve current puzzle</button>
         </div>
       </div>
-
     </div>
-
-    <div class="iframe-container"></div>
+    
+    <div class="play-level-maker-container play-level-maker-is-hidden js-play-container">
+      <div class="game-container js-game-container">
+        <div class="info">
+          <div class="info__item level js-level"></div>
+          <div class="info__item step js-step"></div>
+          <button class="info__item reset js-reset">Reset</button>
+          <button class="info__item undo js-undo">Undo</button>
+        </div>
+  
+        <div class="board js-board" tabindex="0"></div>
+  
+        <div class="nav-buttons">
+          <button class="nav-button nav-button--up js-nav-button" data-nav="38">&#8593;</button>
+          <button class="nav-button nav-button--left js-nav-button" data-nav="37">&#8592;</button>
+          <button class="nav-button nav-button--right js-nav-button" data-nav="39">&#8594;</button>
+          <button class="nav-button nav-button--down js-nav-button" data-nav="40">&#8595;</button>
+        </div>
+    </div>
   </main>
 </body>
 </html>
