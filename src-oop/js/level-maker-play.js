@@ -6,6 +6,10 @@ class LevelMakerPlay extends Game {
     super(levelArray, 0);
     this.levelArray = levelArray;
   }
+
+  checkWin() {
+    return null;
+  }
 }
 
 
