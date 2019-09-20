@@ -189,10 +189,10 @@ class LevelMaker {
   }
 
   getComposedLevelArray() {
-    const rowsArray = Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'))
+    const currentLevelArray = Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'))
     .map(rowArray => rowArray = Array.from(rowArray.childNodes))
     .map(rowArray => rowArray.map(rowSquare => rowSquare.dataset.square));
-    return rowsArray;
+    return currentLevelArray;
   }
 
   checkPerson(currentLevelArray) {
