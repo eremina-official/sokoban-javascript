@@ -154,11 +154,11 @@ class LevelMaker {
   handleSquareChange(event) {
     if (!event.target.classList.contains('square')) { return; }
 
-    if (event.target.dataset.square === this.squareInputCheckedValue) {
-      event.target.dataset.square = 'space';
-    } else {
-      event.target.dataset.square = this.squareInputCheckedValue;
-    }
+    event.target.dataset.square = (
+      event.target.dataset.square === this.squareInputCheckedValue
+    )
+      ? 'space'
+      : this.squareInputCheckedValue;
   }
 
   playCurrentLevelMaker(event) {
