@@ -21,7 +21,7 @@ class LevelMaker {
     this.levelMakerBoardElement = document.querySelector('.js-level-maker-board');
     this.playContainerElement = document.querySelector('.js-play-container');
     this.notificationElement = document.querySelector('.js-notification');
-    this.selectOptionsRange = {bottom: 6, top: 30};
+    this.selectOptionsRange = {bottom: 6, top: 18};
     this.squareInputCheckedValue = 'wall';
     this.handleBoardSize = this.handleBoardSize.bind(this);
     this.handleSquareInputChange = this.handleSquareInputChange.bind(this);
