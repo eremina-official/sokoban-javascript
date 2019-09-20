@@ -8,7 +8,8 @@ import LevelMakerPlay from './level-maker-play.js';
  * @property {object} boardColumnSelectElement - select DOM element
  * @property {object} boardSizeSubmitButtonElement - button DOM element
  * @property {object} levelMakerBoardElement - board DOM element
- * @property {object} iframeContainerElement - iframe DOM element
+ * @property {object} playContainerElement - play container DOM element
+ * @property {object} notificationElement - notification DOM element
  * @property {object} selectOptionsRange - range of board rows and columns amount
  * @property {string} squareInputCheckedValue - value of currently selected radio input with name="board-square-input"
  */
@@ -60,8 +61,8 @@ class LevelMaker {
   }
 
   /**
-   * Handle user input of rows and columns number and create a new sokoban board accordingly 
-   * to entered values.
+   * Handles user input of rows and columns number and creates a new sokoban board accordingly 
+   * to the input.
    */
   handleBoardSize(event) {
     if (event.target !== this.boardSizeSubmitButtonElement) { return; };
@@ -105,6 +106,8 @@ class LevelMaker {
 
   /**
    * Clear the previous board and create a new one.
+   * 
+   * @param {object} levelArray - array representing sokoban board
    */
   makeNewLevelMakerBoard(levelArray) {
     this.clearElementContent(this.levelMakerBoardElement);
@@ -116,7 +119,9 @@ class LevelMaker {
   }
 
   /**
-   * Render board to the DOM.
+   * Renders board to the DOM.
+   * 
+   * @param {object} levelArray - array representing sokoban board
    */
   renderLevelMakerBoard(levelArray) {
     const fragment = document.createDocumentFragment();
@@ -139,7 +144,7 @@ class LevelMaker {
   }
 
   /**
-   * Handles user input. Captures the value of a currently selected radio input of a board square type.
+   * Handles user input. Captures the value of a currently selected radio input for a board square type.
    */
   handleSquareInputChange(event) {
     if (event.target.name !== 'board-square-input') { return; }
@@ -148,7 +153,7 @@ class LevelMaker {
   }
 
   /**
-   * Handles user actions. Changes the type of a board squares according to a currently selected 
+   * Handles user actions. Changes the type of board squares according to a currently selected 
    * radio input value.
    */
   handleSquareChange(event) {
@@ -188,6 +193,11 @@ class LevelMaker {
     }
   }
 
+  /**
+   * Creates an array representing sokoban level maker board made by user.
+   * 
+   * @returns {object} currentLevelArray - array representation of level maker board
+   */
   getComposedLevelArray() {
     const currentLevelArray = Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'))
     .map(rowArray => rowArray = Array.from(rowArray.childNodes))
@@ -195,6 +205,12 @@ class LevelMaker {
     return currentLevelArray;
   }
 
+  /**
+   * Counts number of persons entered to the level maker board.
+   * 
+   * @param {object} currentLevelArray - array representation of level maker board
+   * @returns {number} persons.length - amount of persons entered by user to the level maker board
+   */
   checkPerson(currentLevelArray) {
     const persons = currentLevelArray.reduce((acc, currentValue) => {
       currentValue = currentValue.filter(item => item === 'person');
