@@ -127,7 +127,7 @@ class LevelMaker {
   
       row.forEach(item => {
         const squareElement = document.createElement('div');
-        squareElement.setAttribute('class', `square`);
+        squareElement.setAttribute('class', `square js-level-maker-square`);
         squareElement.setAttribute('data-square', `${item}`)
         rowElement.appendChild(squareElement);
       });
@@ -152,7 +152,7 @@ class LevelMaker {
    * radio input value.
    */
   handleSquareChange(event) {
-    if (!event.target.classList.contains('square')) { return; }
+    if (!event.target.classList.contains('js-level-maker-square')) { return; }
 
     event.target.dataset.square = (
       event.target.dataset.square === this.squareInputCheckedValue
