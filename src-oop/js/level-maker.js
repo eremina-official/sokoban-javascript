@@ -186,7 +186,8 @@ class LevelMaker {
         break;
       case 1:
         this.notificationElement.textContent = '';
-        this.newLevelMakerPlay = new LevelMakerPlay(currentLevelArray);        
+        this.newLevelMakerPlay = new LevelMakerPlay(currentLevelArray);
+        this.playContainerElement.scrollIntoView({behavior: 'smooth'});
         break;
       default:
         this.notificationElement.textContent = 'There should be only one person on the board.'
