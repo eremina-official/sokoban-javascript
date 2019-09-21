@@ -22,7 +22,7 @@ class Game {
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
-    this.history = this.mapLevel(currentLevel);
+    this.history = this.replaceTargetsWithSpaces(currentLevel);
     this.targets = currentLevel.reduce(this.getTargets, []);
     this.board = new Board(this.history[0], this.targets);
     this.info = new Info(levelNumber);
@@ -61,11 +61,11 @@ class Game {
     event.preventDefault();
   }
 
-  mapLevel(currentLevel) {
+  replaceTargetsWithSpaces(currentLevel) {
     const result = [ currentLevel.map(row => row.map(element => {
       return element = (element === 'target') 
-      ? 'space' 
-      : element;
+        ? 'space' 
+        : element;
     })) ];
 
     return result;

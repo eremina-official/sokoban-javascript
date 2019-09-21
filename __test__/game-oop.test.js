@@ -1,7 +1,7 @@
 import Game from '../src-oop/js/game-oop.js';
 
 
-describe('mapLevel', () => {
+describe('replaceTargetsWithSpaces', () => {
   test('should map level correctly', () => {
     const level = [
       ['wall', 'person', 'space', 'target', 'space', 'box'],
@@ -15,7 +15,7 @@ describe('mapLevel', () => {
       ]
     ];
 
-    const result = Game.prototype.mapLevel(level);
+    const result = Game.prototype.replaceTargetsWithSpaces(level);
     expect(result).toEqual(expectedResult);
   });
 });
