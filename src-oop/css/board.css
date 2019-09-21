@@ -32,11 +32,11 @@
   background-color: #6b5942;
 }
 
-.target {
+.square.target {
   position: relative;
 }
 
-.target::before {
+.square.target::before {
   content: '';
   width: 50%;
   height: 50%;
