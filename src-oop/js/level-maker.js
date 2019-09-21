@@ -224,6 +224,3 @@ class LevelMaker {
 }
 
 const newLevelMaker = new LevelMaker();
-
-
-export default LevelMaker;
