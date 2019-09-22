@@ -21,6 +21,32 @@ describe('replaceTargetsWithSpaces', () => {
 });
 
 
+describe('replaceSpacesWithOuter', () => {
+  test('should replace spaces outside the walls with outer', () => {
+    const level = [
+      ['wall', 'wall', 'wall', 'space', 'wall', 'space'],
+      ['wall', 'space', 'wall', 'space', 'wall', 'space'],
+      ['wall', 'person', 'wall', 'wall', 'wall', 'wall'],
+      ['wall', 'wall', 'space', 'space', 'space', 'wall'],
+      ['wall', 'space', 'wall', 'wall', 'space', 'wall'],
+      ['space', 'space', 'space', 'wall', 'wall', 'wall']
+    ];
+
+    const expectedResult = [
+      ['wall', 'wall', 'wall', 'outer', 'wall', 'outer'],
+      ['wall', 'space', 'wall', 'outer', 'wall', 'outer'],
+      ['wall', 'person', 'wall', 'wall', 'wall', 'wall'],
+      ['wall', 'wall', 'space', 'space', 'space', 'wall'],
+      ['wall', 'outer', 'wall', 'wall', 'space', 'wall'],
+      ['outer', 'outer', 'outer', 'wall', 'wall', 'wall']
+    ];
+
+    const result = Game.prototype.replaceSpacesWithOuter(level);
+    expect(result).toEqual(expectedResult);
+  });
+});
+
+
 describe('getTargets', () => {
   test('should return coordinates of all targets', () => {
     const level = [
