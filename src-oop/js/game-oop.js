@@ -71,6 +71,42 @@ class Game {
     return result;
   }
 
+  replaceSpacesWithOuter(currentLevel) {
+    let result = currentLevel.map((row, rowIndex) => {
+      if (rowIndex === 0 || rowIndex === currentLevel.length - 1) {
+        return row;
+      } else {
+        const leftWallIndex = row.findIndex(element => element === 'wall');
+        const rightWallIndex = row.lastIndexOf('wall');
+        return row.map((element, elementIndex) => {
+          return element = (elementIndex < leftWallIndex || elementIndex > rightWallIndex)
+            ? 'outer'
+            : element;
+        });
+      }
+    });
+
+    result = this.mapColumns(result, 0, 1);
+    result = this.mapColumns(result, result.length -1, -1);
+
+    return result;
+  }
+
+  mapColumns(currentLevel, rowIndex, increment) {
+    const spaceIndex = currentLevel[rowIndex].findIndex(element => element === 'space');
+    if (spaceIndex !== -1) {
+      currentLevel[rowIndex][spaceIndex] = 'outer';
+      let nextRowIndex = rowIndex + increment;
+      while (currentLevel[nextRowIndex][spaceIndex] === 'space') {
+        currentLevel[nextRowIndex][spaceIndex] = 'outer';
+        nextRowIndex += increment;
+      }
+      return this.mapColumns(currentLevel, rowIndex, increment);
+    } else {
+      return currentLevel;
+    }
+  }
+
   getTargets(accRow, currentRow, currentRowIndex) {
     const rowTargets = currentRow.reduce((accValue, currentValue, currentValueIndex) => {
       if (currentValue === 'target') {
