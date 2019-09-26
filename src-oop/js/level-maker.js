@@ -105,7 +105,7 @@ class LevelMaker {
   }
 
   /**
-   * Clear the previous board and create a new one.
+   * Clears the previous board and creates a new one.
    * 
    * @param {object} levelArray - array representing sokoban board
    */
@@ -166,6 +166,9 @@ class LevelMaker {
       : this.squareInputCheckedValue;
   }
 
+  /**
+   * Creates a new LevelMakerPlay instance to solve a current made by user sokoban puzzle.
+   */
   playCurrentLevelMaker(event) {
     if (!event.target.classList.contains('js-play-current-level-maker')) { return; }
 
