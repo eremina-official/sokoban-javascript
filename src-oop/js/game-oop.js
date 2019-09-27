@@ -22,7 +22,7 @@ class Game {
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
-    this.history = this.replaceTargetsWithSpaces(currentLevel);
+    this.history = [ this.transformLevelArrayForRendering(currentLevel) ];
     this.targets = currentLevel.reduce(this.getTargets, []);
     this.board = new Board(this.history[0], this.targets);
     this.info = new Info(levelNumber);
