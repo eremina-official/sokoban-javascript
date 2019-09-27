@@ -69,8 +69,8 @@ class Game {
     }));
   }
 
-  replaceSpacesWithOuter(currentLevel) {
-    let result = currentLevel.map((row, rowIndex) => {
+  replaceSpacesWithOuterInRows(currentLevel) {
+    return currentLevel.map((row, rowIndex) => {
       if (rowIndex === 0 || rowIndex === currentLevel.length - 1) {
         return row;
       } else {
