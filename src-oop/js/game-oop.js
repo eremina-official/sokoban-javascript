@@ -61,6 +61,10 @@ class Game {
     event.preventDefault();
   }
 
+  pipe(...fns) {
+    return (arg) => fns.reduce((acc, currentFn) => currentFn(acc), arg);
+  }
+
   replaceTargetsWithSpaces(currentLevel) {
     return currentLevel.map(row => row.map(element => {
       return element = (element === 'target') 
