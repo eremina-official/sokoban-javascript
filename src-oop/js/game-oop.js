@@ -95,7 +95,11 @@ class Game {
       if (spaceIndex !== -1) {
         currentLevel[rowIndex][spaceIndex] = 'outer';
         let nextRowIndex = rowIndex + increment;
-        while (currentLevel[nextRowIndex][spaceIndex] === 'space') {
+        while (
+          nextRowIndex >= 0 &&
+          nextRowIndex < currentLevel.length &&
+          currentLevel[nextRowIndex][spaceIndex] === 'space'
+        ) {
           currentLevel[nextRowIndex][spaceIndex] = 'outer';
           nextRowIndex += increment;
         }
