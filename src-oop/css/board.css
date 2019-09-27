@@ -15,6 +15,10 @@
   background-color: #fcf5e8;
 }
 
+.outer {
+  background-color: #666666;
+}
+
 .wall {
   background-color: gray;
   background-image: url('../../assets/brick-crop.jpg');
