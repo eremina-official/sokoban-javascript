@@ -90,19 +90,30 @@ class Game {
     return result;
   }
 
-  mapColumns(currentLevel, rowIndex, increment) {
-    const spaceIndex = currentLevel[rowIndex].findIndex(element => element === 'space');
-    if (spaceIndex !== -1) {
-      currentLevel[rowIndex][spaceIndex] = 'outer';
-      let nextRowIndex = rowIndex + increment;
-      while (currentLevel[nextRowIndex][spaceIndex] === 'space') {
-        currentLevel[nextRowIndex][spaceIndex] = 'outer';
-        nextRowIndex += increment;
+  replaceSpacesWithOuterInColumns(rowIndex, increment) {
+    return function inner(currentLevel) {
+      const spaceIndex = currentLevel[rowIndex].findIndex(element => element === 'space');
+      if (spaceIndex !== -1) {
+        currentLevel[rowIndex][spaceIndex] = 'outer';
+        let nextRowIndex = rowIndex + increment;
+        while (currentLevel[nextRowIndex][spaceIndex] === 'space') {
+          currentLevel[nextRowIndex][spaceIndex] = 'outer';
+          nextRowIndex += increment;
+        }
+        return inner(currentLevel);
+      } else {
+        return currentLevel;
       }
-      return this.mapColumns(currentLevel, rowIndex, increment);
-    } else {
-      return currentLevel;
     }
+  }
+
+  transformLevelArrayForRendering(currentLevel) {
+    return this.pipe(
+      this.replaceTargetsWithSpaces, 
+      this.replaceSpacesWithOuterInRows, 
+      this.replaceSpacesWithOuterInColumns(0, 1),
+      this.replaceSpacesWithOuterInColumns(currentLevel.length - 1, -1)
+    )(currentLevel);
   }
 
   getTargets(accRow, currentRow, currentRowIndex) {
