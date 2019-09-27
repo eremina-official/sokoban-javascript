@@ -62,13 +62,11 @@ class Game {
   }
 
   replaceTargetsWithSpaces(currentLevel) {
-    const result = [ currentLevel.map(row => row.map(element => {
+    return currentLevel.map(row => row.map(element => {
       return element = (element === 'target') 
         ? 'space' 
         : element;
-    })) ];
-
-    return result;
+    }));
   }
 
   replaceSpacesWithOuter(currentLevel) {
