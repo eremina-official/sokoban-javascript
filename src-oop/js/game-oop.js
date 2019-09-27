@@ -87,11 +87,6 @@ class Game {
         });
       }
     });
-
-    result = this.mapColumns(result, 0, 1);
-    result = this.mapColumns(result, result.length -1, -1);
-
-    return result;
   }
 
   replaceSpacesWithOuterInColumns(rowIndex, increment) {
