@@ -38,6 +38,8 @@ button.board-size-submit {
   flex-wrap: wrap;
   align-items: flex-start;
   background-color: rgba(0, 0, 0, 0.3);
+  /* disable double touch zoom in iOS devices */
+  touch-action: manipulation;
 }
 
 .board-maker-wrapper .level-maker-board {

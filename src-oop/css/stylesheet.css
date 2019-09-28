@@ -80,6 +80,8 @@ h1 {
   position: relative;
   display: flex;
   flex-direction: column;
+  /* disable double touch zoom in iOS devices */
+  touch-action: manipulation;
 }
 
 
