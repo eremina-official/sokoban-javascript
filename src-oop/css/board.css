@@ -42,6 +42,7 @@
 
 .square.target::before {
   content: '';
+  display: block;
   width: 50%;
   height: 50%;
   position: absolute;
