@@ -1,6 +1,5 @@
 .board {
   margin: 0 auto 20px;
-  background-color: #fcf5e8;
 }
 
 .board__row {
@@ -26,12 +25,19 @@
   border: none;
 }
 
-.person {
-  background-color: #819c5a;
-  border-radius: 50%;
+.square.person::before, .square.box::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.box {
+.square.person::before {
+  border-radius: 50%;
+  background-color: #819c5a;
+}
+
+.square.box::before {
   border-radius: 14%;
   background-color: #6b5942;
 }
