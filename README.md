@@ -13,6 +13,8 @@ Brick wall - Photo by Andrew Buchanan on [Unsplash](https://unsplash.com/photos/
 - CSS
 - JavaScript
 - RWD
+- Jest
+- Cypress
 
 **TODO:**
 - restrict board size for smaller devices
