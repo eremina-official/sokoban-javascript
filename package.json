@@ -5,7 +5,8 @@
   "main": "levels.js",
   "scripts": {
     "test": "jest",
-    "test:t": "jest --t="
+    "test:t": "jest --t=replaceSpacesWithOuterInColumns",
+    "cypress": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "cypress": "^3.4.1",
     "jest": "^24.9.0"
   }
 }
