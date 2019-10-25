@@ -8,6 +8,9 @@
     "test:t": "jest --t=replaceSpacesWithOuterInColumns",
     "cypress": "cypress open"
   },
+  "jest": {
+    "testPathIgnorePatterns": ["/node_modules/", "/cypress/"]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/eremina-official/sokoban-javascript.git"
