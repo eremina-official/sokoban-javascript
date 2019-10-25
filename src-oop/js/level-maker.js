@@ -203,10 +203,9 @@ class LevelMaker {
    * @returns {object} currentLevelArray - array representation of level maker board
    */
   getComposedLevelArray() {
-    const currentLevelArray = Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'))
-    .map(rowArray => rowArray = Array.from(rowArray.childNodes))
-    .map(rowArray => rowArray.map(rowSquare => rowSquare.dataset.square));
-    return currentLevelArray;
+    return Array.from(this.levelMakerBoardElement.querySelectorAll('.js-board-row'))
+      .map(row => Array.from(row.childNodes)
+        .map(square => square.dataset.square));
   }
 
   /**
