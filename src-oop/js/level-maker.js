@@ -76,32 +76,26 @@ class LevelMaker {
   /**
    * Creates an array structure representing a sokoban board with selected 
    * number of rows and columns.
+   * levelArray is filled with spaces first and then with walls 
+   * to make it easier to refactor in case it should not be filled or 
+   * should be filled with other values.
    * 
    * @param {number} - number of rows
    * @param {number} - number of columns
    * @returns {object} - array representing a structure of sokoban board
    */
   getLevelArray(rowsNumber, columnsNumber) {
-    /* levelArray is filled with spaces first and then with walls 
-    to make it easier to refactor in case it should not be filled or 
-    should be filled with other values. */
     const levelArray = Array(+rowsNumber).fill(Array(+columnsNumber).fill('space'));
-    const mappedLevelArray = levelArray.map((row, rowIndex) => {
-      return row.map((item, itemIndex) => {
-        if (
-          rowIndex === 0 || 
-          rowIndex === levelArray.length - 1 ||
-          itemIndex === 0 ||
-          itemIndex === row.length - 1
-        ) {
-          return 'wall';
-        }
-
-        return item;
-      });
-    });
-
-    return mappedLevelArray;
+    return levelArray.map((row, rowIndex) => row.map((item, itemIndex) => {
+      return (
+        rowIndex === 0 || 
+        rowIndex === levelArray.length - 1 ||
+        itemIndex === 0 ||
+        itemIndex === row.length - 1
+      ) 
+        ? 'wall'
+        : item;
+    }));
   }
 
   /**
