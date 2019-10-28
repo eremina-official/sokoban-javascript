@@ -61,8 +61,8 @@ class LevelMakerView {
     this.levelMakerBoardElement.appendChild(fragment);
   }
 
-  clearElementContent(DOMelement) {
-    DOMelement.textContent = '';
+  clearBoardContent() {
+    this.levelMakerBoardElement.textContent = '';
   }
 }
 

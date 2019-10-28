@@ -81,7 +81,7 @@ class LevelMaker {
    * @param {object} levelArray - array representing sokoban board
    */
   makeNewLevelMakerBoard(levelArray) {
-    this.levelMakerView.clearElementContent(this.levelMakerBoardElement);
+    this.levelMakerView.clearBoardContent();
     this.levelMakerView.renderLevelMakerBoard(levelArray);
   }
 
