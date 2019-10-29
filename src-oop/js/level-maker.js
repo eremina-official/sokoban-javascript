@@ -11,6 +11,7 @@ import LevelMakerView from './level-maker-view.js';
  * @property {object} boardSizeSubmitButtonElement - button DOM element
  * @property {object} playContainerElement - play container DOM element
  * @property {object} notificationElement - notification DOM element
+ * @property {object} levelMakerBoardElement - board DOM element
  * @property {string} squareInputCheckedValue - value of currently selected radio input with name="board-square-input"
  */
 
@@ -22,6 +23,7 @@ class LevelMaker {
     this.boardSizeSubmitButtonElement = document.querySelector('.js-board-size-submit');
     this.playContainerElement = document.querySelector('.js-play-container');
     this.notificationElement = document.querySelector('.js-notification');
+    this.levelMakerBoardElement = document.querySelector('.js-level-maker-board');
     this.squareInputCheckedValue = 'wall';
     this.handleBoardSize = this.handleBoardSize.bind(this);
     this.handleSquareInputChange = this.handleSquareInputChange.bind(this);
