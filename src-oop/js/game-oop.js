@@ -1,5 +1,11 @@
 import Board from './board-oop.js';
 import Info from './info-oop.js';
+import { 
+         transformLevelArrayForRendering,
+         getTargets,
+         getPersonPosition,
+         getDeepCopy
+       } from './process-level.js';
 
 
 /**
@@ -22,8 +28,8 @@ class Game {
    * @param {number} levelNumber - number of the current level
    */
   constructor(currentLevel, levelNumber) {
-    this.history = [ this.transformLevelArrayForRendering(currentLevel) ];
-    this.targets = currentLevel.reduce(this.getTargets, []);
+    this.history = [ transformLevelArrayForRendering(currentLevel) ];
+    this.targets = currentLevel.reduce(getTargets, []);
     this.board = new Board(this.history[0], this.targets);
     this.info = new Info(levelNumber);
     this.stepNumber = 0;
@@ -59,94 +65,6 @@ class Game {
       return;
     }
     event.preventDefault();
-  }
-
-  pipe(...fns) {
-    return (arg) => fns.reduce((acc, currentFn) => currentFn(acc), arg);
-  }
-
-  replaceTargetsWithSpaces(currentLevel) {
-    return currentLevel.map(row => row.map(element => {
-      return element = (element === 'target') 
-        ? 'space' 
-        : element;
-    }));
-  }
-
-  replaceSpacesWithOuterInRows(currentLevel) {
-    return currentLevel.map((row, rowIndex) => {
-      if (rowIndex === 0 || rowIndex === currentLevel.length - 1) {
-        return row;
-      } else {
-        const leftWallIndex = row.findIndex(element => element === 'wall');
-        const rightWallIndex = row.lastIndexOf('wall');
-        return row.map((element, elementIndex) => {
-          return element = (elementIndex < leftWallIndex || elementIndex > rightWallIndex)
-            ? 'outer'
-            : element;
-        });
-      }
-    });
-  }
-
-  replaceSpacesWithOuterInColumns(rowIndex, increment) {
-    return function inner(currentLevel) {
-      const spaceIndex = currentLevel[rowIndex].findIndex(element => element === 'space');
-      if (spaceIndex !== -1) {
-        currentLevel[rowIndex][spaceIndex] = 'outer';
-        let nextRowIndex = rowIndex + increment;
-        while (
-          nextRowIndex >= 0 &&
-          nextRowIndex < currentLevel.length &&
-          currentLevel[nextRowIndex][spaceIndex] === 'space'
-        ) {
-          currentLevel[nextRowIndex][spaceIndex] = 'outer';
-          nextRowIndex += increment;
-        }
-        return inner(currentLevel);
-      } else {
-        return currentLevel;
-      }
-    }
-  }
-
-  transformLevelArrayForRendering(currentLevel) {
-    return this.pipe(
-      this.replaceTargetsWithSpaces, 
-      this.replaceSpacesWithOuterInRows, 
-      this.replaceSpacesWithOuterInColumns(0, 1),
-      this.replaceSpacesWithOuterInColumns(currentLevel.length - 1, -1)
-    )(currentLevel);
-  }
-
-  getTargets(accRow, currentRow, currentRowIndex) {
-    const rowTargets = currentRow.reduce((accValue, currentValue, currentValueIndex) => {
-      if (currentValue === 'target') {
-        accValue = [...accValue, `${currentRowIndex}-${currentValueIndex}`];
-      }
-      return accValue;
-    }, []);
-    
-    accRow = [...accRow, ...rowTargets];
-    return accRow;
-  }
-
-  getPersonPosition(currentLevel) {
-    let personPosition = {};
-
-    currentLevel.forEach((row, rowIndex) => {
-      const personIndex = row.findIndex(item => item === 'person');
-      if (personIndex !== -1) {
-        personPosition.personY = rowIndex;
-        personPosition.personX = personIndex;
-      }
-    });
-
-    return personPosition;
-  }
-
-  getDeepCopy(levelArray) {
-    return levelArray.map(row => [...row]);
   }
 
   /**
@@ -220,8 +138,8 @@ class Game {
    * @param {object} direction - values to calculate the person's next position
    */
   move(direction) {
-    const levelArray = this.getDeepCopy(this.history[this.history.length - 1]);
-    const currentPersonPosition = this.getPersonPosition(this.history[this.history.length - 1]);
+    const levelArray = getDeepCopy(this.history[this.history.length - 1]);
+    const currentPersonPosition = getPersonPosition(this.history[this.history.length - 1]);
     const {personY, personX} = currentPersonPosition;
     const {y, x} = direction;
     const nextPersonPosition = {nextPersonY: personY + y, nextPersonX: personX + x};
