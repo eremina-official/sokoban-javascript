@@ -1,0 +1,22 @@
+{
+  "env": {
+      "browser": true,
+      "es2021": true
+  },
+  "parserOptions": {
+      "sourceType": "module"
+  },
+  "rules": {
+    "prettier/prettier": ["error", {
+      "endOfLine": "auto"
+    }]
+  },
+  "plugins": ["prettier"],
+  "extends": [
+    "prettier"
+  ],
+  "globals": {
+    "module": true,
+    "process": true
+  }
+}

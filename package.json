@@ -9,7 +9,10 @@
     "cypress": "cypress open"
   },
   "jest": {
-    "testPathIgnorePatterns": ["/node_modules/", "/cypress/"]
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/cypress/"
+    ]
   },
   "repository": {
     "type": "git",
@@ -26,6 +29,9 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "cypress": "^3.4.1",
-    "jest": "^24.9.0"
+    "eslint": "^8.5.0",
+    "eslint-config-prettier": "^8.3.0",
+    "jest": "^24.9.0",
+    "prettier": "2.5.1"
   }
 }
