@@ -1,3 +1,6 @@
+//add IntelliSense
+/// <reference types="Cypress" />
+
 describe('sokoban play', () => {
   beforeEach(() => {
     cy.visit('/')

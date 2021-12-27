@@ -5,7 +5,7 @@
   "main": "levels.js",
   "scripts": {
     "test": "jest",
-    "test:t": "jest --t=replaceSpacesWithOuterInColumns",
+    "test:t": "jest --t=getPersonPosition",
     "cypress": "cypress open"
   },
   "jest": {
