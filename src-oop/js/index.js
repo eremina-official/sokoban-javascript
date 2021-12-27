@@ -2,11 +2,10 @@ import levels from '../../levels.js';
 import Game from './game-oop.js';
 import LevelsMenu from './levels-menu-oop.js';
 
-
 /**
  * Sokoban game
  * Handles new game instance creation, game reset, navigation with buttons, winner screen, levels menu.
- * 
+ *
  * @property {number} currentIndex - index of the current level
  * @property {object} board - board DOM element
  * @property {object} resetButton - reset button DOM element
@@ -21,7 +20,9 @@ class Sokoban {
     this.board = document.querySelector('.js-board');
     this.resetButton = document.querySelector('.js-reset');
     this.winnerScreen = document.querySelector('.js-winner-screen');
-    this.winnerScreenButton = document.querySelector('.js-winner-screen__button');
+    this.winnerScreenButton = document.querySelector(
+      '.js-winner-screen__button'
+    );
     this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
     this.levelsMenu = new LevelsMenu(levels, this);
     this.playNextGame = this.playNextGame.bind(this);
@@ -45,26 +46,26 @@ class Sokoban {
     }
     this.newGame = new Game(levels[this.currentIndex], this.currentIndex + 1);
   }
-  
+
   /**
-   * Open a new game with the Next Game button click 
-   * and save current game index in the state. 
+   * Open a new game with the Next Game button click
+   * and save current game index in the state.
    *
    * @param {event} event - DOM event instance
    */
   playNextGame(event) {
     if (
-      event.target === this.winnerScreenButton
-      && this.currentIndex < levels.length - 1
+      event.target === this.winnerScreenButton &&
+      this.currentIndex < levels.length - 1
     ) {
       this.currentIndex += 1;
       this.openNewGame();
     }
   }
-  
+
   /**
    * Reset the current game.
-   * 
+   *
    * @param {event} event - DOM event instance
    */
   reset(event) {
@@ -76,7 +77,7 @@ class Sokoban {
   /**
    * Receives a number of a level that should be opened from a levelsMenu instance, 
    * saves the current game index in the state.
-   * 
+   *
    * @param {number} levelNumber - number of the level that should be opened.
    */
   goToLevel(levelNumber) {
