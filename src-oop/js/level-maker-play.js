@@ -1,6 +1,5 @@
 import Game from './game-oop.js';
 
-
 class LevelMakerPlay extends Game {
   constructor(levelArray) {
     super(levelArray, 0);
@@ -11,6 +10,5 @@ class LevelMakerPlay extends Game {
     return null;
   }
 }
-
 
 export default LevelMakerPlay;

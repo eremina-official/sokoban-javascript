@@ -1,16 +1,15 @@
 /**
  * Renders the view according to a model.
  * Receives commands from a game instance and updates info screen.
- * 
+ *
  * @property {number} level - number of the current level
  * @property {object} stepElement - step DOM element
  */
 class Info {
-
   /**
    * Create info instance.
-   * 
-   * @param {number} levelNumber - number of the current level 
+   *
+   * @param {number} levelNumber - number of the current level
    */
   constructor(levelNumber) {
     this.level = levelNumber;
@@ -35,6 +34,5 @@ class Info {
     this.resetStepNumber();
   }
 }
-
 
 export default Info;
