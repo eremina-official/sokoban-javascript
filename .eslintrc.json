@@ -8,12 +8,13 @@
   },
   "rules": {
     "prettier/prettier": ["error", {
-      "endOfLine": "auto"
+      "endOfLine": "auto",
+      "semi": true
     }]
   },
   "plugins": ["prettier"],
   "extends": [
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "globals": {
     "module": true,

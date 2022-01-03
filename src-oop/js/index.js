@@ -75,7 +75,7 @@ class Sokoban {
   }
 
   /**
-   * Receives a number of a level that should be opened from a levelsMenu instance, 
+   * Receives a number of a level that should be opened from a levelsMenu instance,
    * saves the current game index in the state.
    *
    * @param {number} levelNumber - number of the level that should be opened.
